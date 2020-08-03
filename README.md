@@ -73,6 +73,24 @@ https://drive.google.com/file/d/1XJ-RzlxrrwPygIRSYmMUFboQotY9HZHK/view?usp=shari
 | Style Main Feed | M | 7 hr | | | |
 | Total | H | 30 hrs |  |  |
 
+## Component Hierarchy
+
+https://drive.google.com/file/d/19J0KZfZm5BVE-utuhHGZm4zQBS1TzezH/view?usp=sharing
+
+
+## SWOT
+
+Strengths: I already have some practice/experience generating HTML content through iterators, and organizing "high volume" elements from a high level
+           I have a very keen eye and focus when driven to reproduce things in detail
+           
+Weaknesses: I tend to run behind my own schedule, consistently, and expend energy fretting about it.
+
+Opportunities: Excellent chance to demonstrate my capability for abstraction and scalability.  Excellent opportunity to go "scavenger hunting" through Bulma's 
+                UI components to build quickly with professional style. 
+
+Threats: No telling what kind of distractions/difficulties may lay in implementing Bulma - will be very documentation dependant.
+         The challenges of the comment section are substantial.
+
 ## Code Snippet
 
 Use this section to include a brief code snippet of functionality that you are proud of and a brief description.  
