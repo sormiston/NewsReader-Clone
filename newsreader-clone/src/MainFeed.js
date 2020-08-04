@@ -1,22 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import { Route, Link } from 'react-router-dom'
 import axios from 'axios'
+import SpotArticle from './SpotArticle.js'
 
 export default function MainFeed() {
   const { REACT_APP_BASE_URL, REACT_APP_AIRTABLE_API_KEY } = process.env
-  const [articles, setArticles] = useState({})
-
+  const [articles, setArticles] = useState([])
+  const [heroArticle1, setHeroArticle1] = useState({})
+  const [heroArticle2, setHeroArticle2] = useState({})
+  const [dataLoading, setDataLoading] = useState(false)
 
   useEffect(() => {
     const apiCall = async () => {
+      setDataLoading(true)
       const res = await axios(`${REACT_APP_BASE_URL}Content/?view=Grid%20view`, {
         headers: {
           Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`
         }
       })
-      console.log(res.data.records)
-      
-      function randomizeArticles (array) {
+      // console.log(res.data.records)
+
+      const randomizedArticles = (array) => {
         const randomized = []
         while (array.length > 0) {
           const randomIndex = Math.floor(Math.random() * array.length)
@@ -24,32 +28,23 @@ export default function MainFeed() {
         }
         return randomized
       }
-      setArticles(randomizeArticles(res.data.records))
-
+      console.log(randomizedArticles)
+      // setHeroArticle1()
+      // setArticles()
+      // setDataLoading(false)
     }
     apiCall()
   }, [])
 
-  function guard() {
-    return articles.length > 0 ? true : 'SPINNING THINGEE'
-  }
-  
-  console.log(articles.length > 0)
+  // console.log(dataLoaded)
+  console.log(articles[0])
+
 
   return <main>
     <div className="container">Category Carousel</div>
-    <div>Tiles and Wrappers to carve out the real estate</div>
-    <Link to='/:id'>
-      <div className="box">
-        <article className="media">
-          <div className="media-content">
-            <div className="content is-large">{guard() && articles[0].headline}</div>
-          </div>
-        </article>
-      </div>
-    </Link>
-   
-
+    <div>Tiles and Wrappers to carve out the screen space</div>
+    {dataLoading ? <h1>Wait for it</h1> : <h1>loaaded</h1>}
+    {/* {articles.length < 0 && <SpotArticle articles={articles[0]} />} */}
 
   </main>
 
