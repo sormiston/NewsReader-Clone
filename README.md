@@ -94,9 +94,11 @@ Threats: No telling what kind of distractions/difficulties may lay in implementi
 
 ## Code Snippet
 
-Use this section to include a brief code snippet of functionality that you are proud of and a brief description.  
+## Observations
+ArticlePage > Header / Footer path .... use of destructured prop { article } enabled me to copy and paste without any dot-notation additions when generating child components ... kinda cool. PRO: my precious data doesn't get longer or more semantically complicated to call .... CON is that its history of passage through the data chain is no longer obvious.
 
-TBC
+Using Styled-components to attenuate a pre-defined CSS extension framework (like Bulma) feels like a big win, and a great way to avoid dreaded stylesheets.  By opening up a Styled Component declared 
+const as a parent container, one can always (?) override the more generalized class rules provided bulma/css/bulma.css.  This allows "spot" overriding, without opening up a dreaded stylesheet.
 
 ## Change Log
  Use this section to document what changes were made and the reasoning behind those changes.  
