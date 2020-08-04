@@ -8,7 +8,7 @@ export default function MainFeed() {
   const [articles, setArticles] = useState([])
   const [heroArticle1, setHeroArticle1] = useState({})
   const [heroArticle2, setHeroArticle2] = useState({})
-  const [dataLoading, setDataLoading] = useState(false)
+  const [dataLoading, setDataLoading] = useState(true)
 
   useEffect(() => {
     const apiCall = async () => {
@@ -29,7 +29,6 @@ export default function MainFeed() {
         return result
       }
       const randomizedArticles = randomize(res.data.records)
-      console.log(randomizedArticles)
       setHeroArticle1(randomizedArticles.shift())
       setHeroArticle2(randomizedArticles.shift())
       setArticles(randomizedArticles)
@@ -38,16 +37,15 @@ export default function MainFeed() {
     apiCall()
   }, [])
 
-  // console.log(dataLoaded)
-  console.log(articles[0])
+  console.log(heroArticle1)
+
 
 
   return <main>
     <div className="container">Category Carousel</div>
     <div>Tiles and Wrappers to carve out the screen space</div>
-    {dataLoading ? <h1>Wait for it</h1> : <h1>loaaded</h1>}
+    {dataLoading ? <h1>Wait for it</h1> : <SpotArticle contentObject={heroArticle1} />}
     {/* {articles.length < 0 && <SpotArticle articles={articles[0]} />} */}
-
   </main>
 
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom'
-import './App.css';
 import MainFeed from './MainFeed.js'
 
 function App() {
