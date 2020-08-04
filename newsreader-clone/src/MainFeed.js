@@ -41,8 +41,6 @@ export default function MainFeed() {
  
   console.log(heroArticle1)
 
-
-
   return <main>
     <nav className="level is-mobile has-text-centered"></nav>
     <div className="level-item has-text-centered">Category Carousel</div>

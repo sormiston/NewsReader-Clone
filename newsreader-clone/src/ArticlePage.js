@@ -16,6 +16,7 @@ export default function ArticlePage() {
   const { REACT_APP_BASE_URL, REACT_APP_AIRTABLE_API_KEY } = process.env
   const [article, setArticle] = useState({})
   const [dataLoading, setDataLoading] = useState(true)
+  const [commentOverlay, setCommentOverlay] = useState(false)
 
   // Note: API call contains a query parameter provided by useParams hook.  It will fetch one specific article.
   useEffect(() => {
@@ -32,15 +33,22 @@ export default function ArticlePage() {
     apiCall()
   }, [])
   console.log(article)
+
+  const toggleComments = () => {
+    setCommentOverlay(!commentOverlay)
+  }
+
   return (
+    <>
+      <article>
 
-    <article className="article-page-wrap">
-      <Header article={article} />
-      <Body />
-      <Footer article={article} />
+        <Header article={article} />
+        <Body />
+        <Footer article={article} centralizedFunction={() => toggleComments()} />
+      </article>
+
       <Recommendations />
-    </article>
-
+    </>
   )
 
 }
