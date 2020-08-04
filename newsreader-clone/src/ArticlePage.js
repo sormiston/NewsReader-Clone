@@ -33,12 +33,14 @@ export default function ArticlePage() {
   }, [])
   console.log(article)
   return (
-    <>
+
+    <article className="article-page-wrap">
       <Header article={article} />
       <Body />
       <Footer article={article} />
       <Recommendations />
-    </>
+    </article>
+
   )
 
 }

@@ -4,7 +4,8 @@ import styled from 'styled-components'
 
 export default function Header({ article }) {
   // STYLED COMPONENTS
-  const StyledHeader = styled.main`
+  const StyledHeader = styled.header`
+  
   .hero {
     max-height: 6vh;
   }
@@ -24,7 +25,7 @@ export default function Header({ article }) {
           </h1>
         </div>
       </section>
-      <figure className="image is-5by4">
+      <figure className="image is-3by2">
         <img src={article.imgLarge} />
 
       </figure>
@@ -47,7 +48,7 @@ export default function Header({ article }) {
           <section className="media-content">
             <div className="content px-3">
               <h6 className="title is-6">{article.author}</h6>
-              <div className="subtitle is-6">{`${article.date} `}{'\u2022'} 5min read {'\u2605'}</div>
+              <div className="subtitle is-6">{article.date}{'\u2022'} 5min read {'\u2605'}</div>
             </div>
           </section>
         </div>

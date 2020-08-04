@@ -7,9 +7,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.article-page-wrap {
+  display: flex;
+  flex-flow: column nowrap;
+}
 
 .react-router-link {
   color: unset;
   text-decoration: unset;
-  
 }

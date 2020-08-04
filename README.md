@@ -22,7 +22,7 @@ https://www.figma.com/file/ixr6g4sLRUepstgnTAGpjW/Untitled?node-id=0%3A1
 
 ### MVP/PostMVP
 
-The functionality will then be divided into two separate lists: MPV and PostMVP.  Carefully decided what is placed into your MVP as the client will expect this functionality to be implemented upon project completion.  
+The functionality will then be divided into two separate lists: MVP and PostMVP.  Carefully decided what is placed into your MVP as the client will expect this functionality to be implemented upon project completion.  
 
 #### MVP 
 
@@ -36,6 +36,7 @@ The functionality will then be divided into two separate lists: MPV and PostMVP.
 
 #### PostMVP  
 
+- Clickable Tag Categories
 - Article pages will have incrementing Clap counters and bookmark functions
 - dropdown article specific context meny w/ functional "Dismiss this story" button
 - Infinite scroll of newsfeed 
@@ -95,10 +96,17 @@ Threats: No telling what kind of distractions/difficulties may lay in implementi
 ## Code Snippet
 
 ## Observations
+Tuesday
 ArticlePage > Header / Footer path .... use of destructured prop { article } enabled me to copy and paste without any dot-notation additions when generating child components ... kinda cool. PRO: my precious data doesn't get longer or more semantically complicated to call .... CON is that its history of passage through the data chain is no longer obvious.
 
 Using Styled-components to attenuate a pre-defined CSS extension framework (like Bulma) feels like a big win, and a great way to avoid dreaded stylesheets.  By opening up a Styled Component declared 
 const as a parent container, one can always (?) override the more generalized class rules provided bulma/css/bulma.css.  This allows "spot" overriding, without opening up a dreaded stylesheet.
+
+On the note of style, it is VERY hard to NOT style as you go.  Especially since I am experimenting, there is high-risk of Frankenstyling.
+
+## Issues
+Cover art images (imgLarge & imgSmall) are URL endpoints in airtable.  Can we make records have PERSISTENT images?
+This will likely involve revisiting Soleil's airtable seed with some use of variable storage.
 
 ## Change Log
  Use this section to document what changes were made and the reasoning behind those changes.  
