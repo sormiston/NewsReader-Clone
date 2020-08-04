@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom'
 import MainFeed from './MainFeed.js'
 import ArticlePage from './ArticlePage'
+import 'bulma/css/bulma.css'
 
 function App() {
   // Fake user Login - friend of mine
