@@ -20,18 +20,20 @@ export default function MainFeed() {
       })
       // console.log(res.data.records)
 
-      const randomizedArticles = (array) => {
-        const randomized = []
+      const randomize = (array) => {
+        const result = []
         while (array.length > 0) {
           const randomIndex = Math.floor(Math.random() * array.length)
-          randomized.push(...array.splice(randomIndex, 1)) // still not 100% HOW spread operator works, but thankful that it breaks unecessary nesting
+          result.push(...array.splice(randomIndex, 1)) // still not 100% HOW spread operator works, but thankful that it breaks unecessary nesting
         }
-        return randomized
+        return result
       }
+      const randomizedArticles = randomize(res.data.records)
       console.log(randomizedArticles)
-      // setHeroArticle1()
-      // setArticles()
-      // setDataLoading(false)
+      setHeroArticle1(randomizedArticles.shift())
+      setHeroArticle2(randomizedArticles.shift())
+      setArticles(randomizedArticles)
+      setDataLoading(false)
     }
     apiCall()
   }, [])
