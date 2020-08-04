@@ -34,11 +34,11 @@ export default function Header({ article }) {
         <div className="title is-4">{article.headline}</div>
         <div className="subtitle is-6">{article.subHeadline}</div>
 
-        <span className="icon"><i class="fa fa-twitter-square" aria-hidden="true"></i></span>
-        <span className="icon"><i class="fa fa-linkedin-square" aria-hidden="true"></i></span>
-        <span className="icon"><i class="fa fa-facebook-square" aria-hidden="true"></i></span>
-        <span className="icon"><i class="fa fa-bookmark-o" aria-hidden="true"></i></span>
-        <span className="icon"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></span>
+        <span className="icon"><i className="fa fa-twitter-square" aria-hidden="true"></i></span>
+        <span className="icon"><i className="fa fa-linkedin-square" aria-hidden="true"></i></span>
+        <span className="icon"><i className="fa fa-facebook-square" aria-hidden="true"></i></span>
+        <span className="icon"><i className="fa fa-bookmark-o" aria-hidden="true"></i></span>
+        <span className="icon"><i className="fa fa-ellipsis-h" aria-hidden="true"></i></span>
 
         <div className="media">
           <div className="media-left"></div>

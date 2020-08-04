@@ -6,6 +6,7 @@ import Header from './Header'
 import Body from './Body'
 import Footer from './Footer'
 import Recommendations from './Recommendations'
+import Comments from './Comments'
 
 // is the second API call necessary?  NO way to do this with props?
 // Possible to reduce API Calls (4, as of commit post-b5ac835 ) by folding state hooks into one state object?
@@ -32,7 +33,9 @@ export default function ArticlePage() {
     }
     apiCall()
   }, [])
-  console.log(article)
+
+
+
 
   const toggleComments = () => {
     setCommentOverlay(!commentOverlay)
@@ -41,11 +44,12 @@ export default function ArticlePage() {
   return (
     <>
       <article>
-
         <Header article={article} />
         <Body />
         <Footer article={article} centralizedFunction={() => toggleComments()} />
       </article>
+      <Comments commentOverlay={commentOverlay} />
+
 
       <Recommendations />
     </>
