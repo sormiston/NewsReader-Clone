@@ -69,6 +69,7 @@ https://drive.google.com/file/d/1XJ-RzlxrrwPygIRSYmMUFboQotY9HZHK/view?usp=shari
 | Initialize React Components: Show Article Page | H | 3 hrs | | |
 | Comment Section Component | H | 6 hrs | | |
 | Stress-test Comment Section | L | 1hr | | |
+| CSS R & D | H | 4hr | | |
 | Style Article Page | M | 5 hr | | | |
 | Style Main Feed | M | 7 hr | | | |
 | Total | H | 30 hrs |  |  |
