@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { Route, Link } from 'react-router-dom'
 import axios from 'axios'
 import SpotArticle from './SpotArticle.js'
+import 'bulma/css/bulma.css'
+
 
 export default function MainFeed() {
   const { REACT_APP_BASE_URL, REACT_APP_AIRTABLE_API_KEY } = process.env
-  const [articles, setArticles] = useState([])
+  const [news, setNews] = useState([])
   const [heroArticle1, setHeroArticle1] = useState({})
   const [heroArticle2, setHeroArticle2] = useState({})
   const [dataLoading, setDataLoading] = useState(true)
@@ -28,24 +30,25 @@ export default function MainFeed() {
         }
         return result
       }
-      const randomizedArticles = randomize(res.data.records)
-      setHeroArticle1(randomizedArticles.shift())
-      setHeroArticle2(randomizedArticles.shift())
-      setArticles(randomizedArticles)
+      const randomizedNews = randomize(res.data.records)
+      setHeroArticle1(randomizedNews.shift())
+      setHeroArticle2(randomizedNews.shift())
+      setNews(randomizedNews)
       setDataLoading(false)
     }
     apiCall()
   }, [])
-
+ 
   console.log(heroArticle1)
 
 
 
   return <main>
-    <div className="container">Category Carousel</div>
-    <div>Tiles and Wrappers to carve out the screen space</div>
+    <nav className="level is-mobile has-text-centered"></nav>
+    <div className="level-item has-text-centered">Category Carousel</div>
+   
     {dataLoading ? <h1>Wait for it</h1> : <SpotArticle contentObject={heroArticle1} />}
-    {/* {articles.length < 0 && <SpotArticle articles={articles[0]} />} */}
+    {/* heroArticle2 POPS OFF under media query*/}
   </main>
 
 }

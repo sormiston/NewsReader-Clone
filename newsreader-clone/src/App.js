@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom'
 import MainFeed from './MainFeed.js'
+import ArticlePage from './ArticlePage'
 
 function App() {
   // Fake user Login - friend of mine
@@ -14,6 +15,9 @@ function App() {
       </nav>
       <Route path="/" exact>
         <MainFeed />
+      </Route>
+      <Route path="/:id">
+        <ArticlePage />
       </Route>
     </div>
   );
