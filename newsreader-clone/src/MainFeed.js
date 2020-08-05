@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Route, Link } from 'react-router-dom'
 import axios from 'axios'
-import SpotArticle from './SpotArticle.js'
+import AboveFold from './AboveFold'
 
 
 
@@ -38,15 +38,14 @@ export default function MainFeed() {
     }
     apiCall()
   }, [])
- 
-  console.log(heroArticle1)
+
 
   return <main>
     <nav className="level is-mobile has-text-centered"></nav>
     <div className="level-item has-text-centered">Category Carousel</div>
-   
-    {dataLoading ? <h1>Wait for it</h1> : <SpotArticle contentObject={heroArticle1} />}
-    {/* heroArticle2 POPS OFF under media query*/}
+
+    {dataLoading ? <h1>Wait for it</h1> : <AboveFold contentObject={heroArticle1, heroArticle2} />}
+
   </main>
 
 }

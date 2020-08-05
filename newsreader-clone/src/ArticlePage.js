@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import Header from './Header'
 import Body from './Body'
 import Footer from './Footer'
 import Recommendations from './Recommendations'
 import Comments from './Comments'
+
 
 // is the second API call necessary?  NO way to do this with props?
 // Possible to reduce API Calls (4, as of commit post-b5ac835 ) by folding state hooks into one state object?
@@ -32,10 +33,31 @@ export default function ArticlePage() {
       setDataLoading(false)
     }
     apiCall()
+
   }, [])
 
 
 
+
+  // ANIMATION THANKS TO SOLEIL SOLOMON!
+
+  const load = (props) => keyframes`
+    from {
+      background-color: rgba(0,0,0,0);
+      filter: brightness(1);
+    } 
+    to {
+      background-color: rgba(0,0,0,0.4);
+      filter: brightness(0.5); 
+    }
+   `
+  const Article = styled.article`  
+   background-color: ${commentOverlay ? 'rgba(0,0,0,0.4)' : 'rgba(0,0,0,0)'};
+   filter: ${commentOverlay ? 'brightness(0.5)' : 'brightness(1)'};
+   animation: ${load} ${commentOverlay ? '1s normal' : '.01s reverse'}
+   
+ `
+  // end citation
 
   const toggleComments = () => {
     setCommentOverlay(!commentOverlay)
@@ -43,12 +65,12 @@ export default function ArticlePage() {
 
   return (
     <>
-      <article>
+      <Article>
         <Header article={article} />
         <Body />
         <Footer article={article} centralizedFunction={() => toggleComments()} />
-      </article>
-      <Comments commentOverlay={commentOverlay} />
+      </Article>
+      {commentOverlay && <Comments />}
 
 
       <Recommendations />
