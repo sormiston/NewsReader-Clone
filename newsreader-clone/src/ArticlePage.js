@@ -6,7 +6,7 @@ import Header from './Header'
 import Body from './Body'
 import Footer from './Footer'
 import Recommendations from './Recommendations'
-import Comments from './Comments'
+import CommentsCard from './CommentsCard'
 
 
 // is the second API call necessary?  NO way to do this with props?
@@ -67,7 +67,7 @@ export default function ArticlePage() {
         <Body />
         <Footer article={article} toggleComments={() => toggleComments()} />
       </Article>
-      {commentOverlay && <Comments contentObject={article} toggleComments={() => toggleComments()} />}
+      {commentOverlay && <CommentsCard contentObject={article} toggleComments={() => toggleComments()} />}
       <Recommendations />
     </>
   )

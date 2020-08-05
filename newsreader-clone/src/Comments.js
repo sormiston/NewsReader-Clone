@@ -1,69 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import styled, { keyframes } from 'styled-components'
-import CommentInput from './CommentInput'
 
-export default function Comments({ contentObject, toggleComments }) {
-  const [expandTextArea, setExpandTextArea] = useState(false)
-  const [commentsPersist, setCommentsPersist] = useState()
-  const parsedComments = JSON.parse(contentObject.comments)
-
-
-  const handleClick = (e) => {
-    console.log(e)
-    setExpandTextArea(!expandTextArea)
-  }
-
-  // ANIMATION CREDIT TO SOLEIL SOLOMON
-  const load = (props) => keyframes`
-   from {
-     height: 1%;
-   } 
-   to {
-     height: 85vh;
-   }`
-
-  // end citaton
-  const CommentsCard = styled.main`  
-     
-    position: fixed;
-    width: 100%;
-    border-top: 1px;
-    border-radius: 5%;
-    background-color: white;
-    height: 85vh;
-    z-index: 1;
-    bottom: 1%;
-    /* ANIMATION CREDIT TO SOLEIL SOLOMON */
-    animation: ${load} .5s forwards;
-  
-  .response-head {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .user-head span {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-  
-  }
-  
-  `
+export default function Comments({ parsedComments }) {
   return (
-    <div>
-      <CommentsCard>
-        <div className="container">
-          <h2 className="title is-3 mt-6 ml-5 response-head">
-            Responses (3)
-          <button className="delete mr-5" onClick={toggleComments}></button></h2>
-          <CommentInput handleClick={(e) => handleClick(e.target)} expandTextArea={expandTextArea} />
+
+    parsedComments.map(comment =>
+      <div className="box">
+        <div className="user-head">
+          <span display="inline-block">
+            <figure className="media-left image is-32x32">
+              <img src={comment.profile} alt="" className="image is-rounded" />
+            </figure>
+            <h5 className="title is-6">{comment.name}</h5>
+          </span>
+          <span className="icon"><i className="fa fa-ellipsis-h" aria-hidden="true"></i></span>
         </div>
-
-
-      </CommentsCard>
-    </div>
-
+        <p>
+          {comment.comment}
+        </p>
+        <footer>
+          <span><i className="fa fa-hand-lizard-o" aria-hidden="true"></i>{comment.claps}</span>
+          <span><i className="fa fa-comment"></i></span>
+        </footer>
+      </div>
+    )
   )
 }
