@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export default function Footer({ article, centralizedFunction }) {
+export default function Footer({ article, toggleComments }) {
 
   return (
     <>
@@ -17,8 +17,8 @@ export default function Footer({ article, centralizedFunction }) {
       <div className="level">
         <div className="level-left px-5">
           <span className="icon"><i className="fa fa-hand-lizard-o" aria-hidden="true"></i><span>{article.numClaps}</span></span>
-          <span className="icon px-6" ><i className="fa fa-comment" onClick={centralizedFunction}></i></span>
-          <button onClick={centralizedFunction}>Click Me</button>
+          <span className="icon px-6" ><i className="fa fa-comment" onClick={toggleComments}></i></span>
+          <button onClick={toggleComments}>Click Me</button>
         </div>
 
       </div>

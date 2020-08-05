@@ -36,9 +36,6 @@ export default function ArticlePage() {
 
   }, [])
 
-
-
-
   // ANIMATION THANKS TO SOLEIL SOLOMON!
 
   const load = (props) => keyframes`
@@ -68,11 +65,9 @@ export default function ArticlePage() {
       <Article>
         <Header article={article} />
         <Body />
-        <Footer article={article} centralizedFunction={() => toggleComments()} />
+        <Footer article={article} toggleComments={() => toggleComments()} />
       </Article>
-      {commentOverlay && <Comments />}
-
-
+      {commentOverlay && <Comments contentObject={article} toggleComments={() => toggleComments()} />}
       <Recommendations />
     </>
   )
