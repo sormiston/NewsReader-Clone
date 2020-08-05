@@ -45,7 +45,7 @@ export default function MainFeed() {
     <nav className="level is-mobile has-text-centered"></nav>
     <div className="level-item has-text-centered">Category Carousel</div>
 
-    {dataLoading ? <h1>Wait for it</h1> : <AboveFold heroArticle1={heroArticle1} heroArticle2={heroArticle2} />}
+    {dataLoading ? <h1>Wait for it</h1> : <AboveFold heroArticle1={heroArticle1} heroArticle2={heroArticle2} news={news.slice(0, 3)} />}
 
   </main>
 

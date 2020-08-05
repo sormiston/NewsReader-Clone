@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import HeroArticle from './HeroArticle'
 import ArticleBulletin from './ArticleBulletin'
 
-export default function AboveFold({ heroArticle1, heroArticle2 }) {
+export default function AboveFold({ heroArticle1, heroArticle2, news }) {
 
   const AboveFold = styled.section`
   h1 {
@@ -14,6 +14,10 @@ export default function AboveFold({ heroArticle1, heroArticle2 }) {
   h3 {
     font-size: 1rem;
   }
+  
+  /* img {
+    max-height: 600px;
+  } */
   @media screen and (max-width: 395px) {
     text-overflow: ellipsis;
   .subtitle {
@@ -32,7 +36,7 @@ export default function AboveFold({ heroArticle1, heroArticle2 }) {
 
     <AboveFold>
       <HeroArticle contentObject={heroArticle1} isSecondary={false} />
-      <ArticleBulletin />
+      {news.map(news => <ArticleBulletin contentList={news} />)}
       <HeroArticle contentObject={heroArticle2} isSecondary={true} />
 
     </AboveFold>
