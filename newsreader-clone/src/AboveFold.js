@@ -35,9 +35,9 @@ export default function AboveFold({ heroArticle1, heroArticle2, news }) {
   return (
 
     <AboveFold>
-      <HeroArticle contentObject={heroArticle1} isSecondary={false} />
-      {news.map(news => <ArticleBulletin contentList={news} />)}
-      <HeroArticle contentObject={heroArticle2} isSecondary={true} />
+      <HeroArticle contentObject={heroArticle1} isHero={true} isSecondary={false} />
+      {news.map(news => <HeroArticle contentObject={news} isHero={false} />)}
+      <HeroArticle contentObject={heroArticle2} isHero={true} isSecondary={true} />
 
     </AboveFold>
 
