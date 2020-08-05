@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import HeroArticle from './HeroArticle'
 import ArticleBulletin from './ArticleBulletin'
 
-export default function AboveFold({ contentObject }) {
+export default function AboveFold({ heroArticle1, heroArticle2 }) {
 
   const AboveFold = styled.section`
   h1 {
@@ -19,16 +19,21 @@ export default function AboveFold({ contentObject }) {
   .subtitle {
     margin-bottom: -20px;
   }
+}
+@media screen and (max-width: 1030px) {
+  .isSecondary {
+    display: none;
+  }
   
 }
   `
-  console.log(contentObject)
+
   return (
 
     <AboveFold>
-      <HeroArticle contentObject={contentObject} isSecondary={false} />
-      <ArticleBulletin contentObject={contentObject} />
-      <HeroArticle contentObject={contentObject} isSecondary={true} />
+      <HeroArticle contentObject={heroArticle1} isSecondary={false} />
+      <ArticleBulletin />
+      <HeroArticle contentObject={heroArticle2} isSecondary={true} />
 
     </AboveFold>
 
