@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import styled, { keyframes } from 'styled-components'
+import CommentInput from './CommentInput'
 
 export default function Comments({ contentObject, toggleComments }) {
+  const [expandTextArea, setExpandTextArea] = useState(false)
+  const [commentsPersist, setCommentsPersist] = useState()
+  const parsedComments = JSON.parse(contentObject.comments)
 
 
-
-
-
+  const handleClick = (e) => {
+    console.log(e)
+    setExpandTextArea(!expandTextArea)
+  }
 
   // ANIMATION CREDIT TO SOLEIL SOLOMON
   const load = (props) => keyframes`
@@ -15,8 +20,8 @@ export default function Comments({ contentObject, toggleComments }) {
    } 
    to {
      height: 85vh;
-   }
-  `
+   }`
+
   // end citaton
   const CommentsCard = styled.main`  
      
@@ -38,6 +43,13 @@ export default function Comments({ contentObject, toggleComments }) {
     align-items: center;
   }
   
+  .user-head span {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+  
+  }
+  
   `
   return (
     <div>
@@ -46,8 +58,10 @@ export default function Comments({ contentObject, toggleComments }) {
           <h2 className="title is-3 mt-6 ml-5 response-head">
             Responses (3)
           <button className="delete mr-5" onClick={toggleComments}></button></h2>
-
+          <CommentInput handleClick={(e) => handleClick(e.target)} expandTextArea={expandTextArea} />
         </div>
+
+
       </CommentsCard>
     </div>
 
