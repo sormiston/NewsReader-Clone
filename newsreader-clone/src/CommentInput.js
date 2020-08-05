@@ -2,17 +2,11 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 
-export default function CommentInput() {
+export default function CommentInput({ addComment }) {
   const [expandTextArea, setExpandTextArea] = useState(false)
   const [userName, setUsername] = useState(localStorage.getItem('name'))
   const [userProfile, setUserProfile] = useState(localStorage.getItem('profile'))
 
-
-
-  const handleClick = (e) => {
-    console.log(e)
-    setExpandTextArea(!expandTextArea)
-  }
 
   return (
     <div className="box">
@@ -24,11 +18,11 @@ export default function CommentInput() {
           <h5 className="title is-5">{userName}</h5>
         </span>
       </div>
-      <form>
-        <textarea placeholder="What are your thoughts?" className="textarea" rows={`${expandTextArea ? 4 : 1}`}
-          onClick={handleClick} >
-        </textarea>
-      </form>
+
+      <textarea placeholder="What are your thoughts?" className="textarea" rows={`${expandTextArea ? 4 : 1}`}
+        onClick={() => setExpandTextArea(!expandTextArea)} >
+      </textarea>
+      <button className="button is-primary" onClick={addComment}>Submit</button>
     </div>
   )
 }
