@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import styled, { keyframes } from 'styled-components'
 import CommentInput from './CommentInput'
-import Comments from './Comments'
+import Comment from './Comment'
 
 const StyledCommentsCard = styled.main`  
      
@@ -121,7 +121,7 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
           Responses ({parsedComments.length})
           <button className="delete mr-5" onClick={toggleComments}></button></h2>
         <CommentInput addComment={addComment} />
-        {!dataLoading && <Comments parsedComments={parsedComments} />}
+        {!dataLoading && parsedComments.map(comment => <Comment comment={comment} />)}
       </div>
     </StyledCommentsCard>
 
