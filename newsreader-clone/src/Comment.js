@@ -3,10 +3,10 @@ import styled from 'styled-components'
 
 
 
-export default function Comment({ comment, editComment }) {
+export default function Comment({ comment, editComment, thisCommentIdx }) {
   const [editing, setEditing] = useState(false)
-  const [userEditedComment, setUserEditedComment] = useState('')
-  console.log(editing)
+  const [userEditedComment, setUserEditedComment] = useState(comment.comment)
+
 
   const dropdownRef = createRef()
   const handleDropdown = () => {
@@ -14,7 +14,7 @@ export default function Comment({ comment, editComment }) {
   }
 
   const handleEditComment = () => {
-    editComment(userEditedComment)
+    editComment(userEditedComment, thisCommentIdx)
     setEditing(false)
   }
 
@@ -42,7 +42,7 @@ export default function Comment({ comment, editComment }) {
 
   const editCommentElement = (
     <div className="content">
-      <textarea display="block" className="edit-textarea" placeholder={comment.comment} value={userEditedComment} rows={4}
+      <textarea display="block" className="edit-textarea" value={userEditedComment} rows={4}
         onChange={(e) => setUserEditedComment(e.target.value)} >
       </textarea>
       <button className="button is-primary" onClick={() => handleEditComment()}>Submit</button>
