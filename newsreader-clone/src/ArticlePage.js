@@ -64,7 +64,7 @@ export default function ArticlePage() {
       <Article>
         <Header article={article} />
         <Body />
-        <Footer article={article} toggleComments={() => toggleComments()} />
+        <Footer article={article} toggleComments={toggleComments} />
       </Article>
       {commentOverlay && <CommentsCard contentObject={article} toggleComments={() => toggleComments()} />}
     </>

@@ -9,8 +9,10 @@ export default function CommentsCard({ contentObject, toggleComments }) {
   const params = useParams()
   const id = params.id
 
-  const [parsedComments, setParsedComments] = useState(JSON.parse(contentObject.comments))
   const { REACT_APP_BASE_URL, REACT_APP_AIRTABLE_API_KEY } = process.env
+  const [parsedComments, setParsedComments] = useState(JSON.parse(contentObject.comments))
+  const [didPostComment, setDidPostComment] = useState(0)
+
 
 
   const addComment = (string) => {
@@ -37,16 +39,28 @@ export default function CommentsCard({ contentObject, toggleComments }) {
       })
     }
     apiCall()
+    setDidPostComment(prev => prev++)
   }
 
   // ANIMATION CREDIT TO SOLEIL SOLOMON
-  const load = (props) => keyframes`
+  if (didPostComment == false) {
+    var load = (props) => keyframes`
    from {
      height: 1%;
    } 
    to {
      height: 85vh;
    }`
+  } else {
+    var load = (props) => keyframes`
+    from {
+      height: 85vh;
+    }
+     to {
+      height: 85vh;
+    }`
+  }
+
 
   // end citaton
   const CommentsCard = styled.main`  
@@ -56,11 +70,11 @@ export default function CommentsCard({ contentObject, toggleComments }) {
     border-top: 1px;
     border-radius: 5%;
     background-color: white;
-    height: 85vh;
+    /* height: 85vh; */
     z-index: 1;
     bottom: 1%;
     /* ANIMATION CREDIT TO SOLEIL SOLOMON */
-    animation: ${load} .5s forwards;
+    animation: ${load} 1s forwards;
   .box {
     padding: .8rem;
     margin: .2rem;
