@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import styled, { keyframes } from 'styled-components'
 import CommentInput from './CommentInput'
 import Comments from './Comments'
 
 export default function CommentsCard({ contentObject, toggleComments }) {
+  const params = useParams()
+  const id = params.id
+
   const [parsedComments, setParsedComments] = useState(JSON.parse(contentObject.comments))
+  const { REACT_APP_BASE_URL, REACT_APP_AIRTABLE_API_KEY } = process.env
 
 
   const addComment = (string) => {
@@ -16,22 +21,22 @@ export default function CommentsCard({ contentObject, toggleComments }) {
       claps: 0,
     }
     parsedComments.unshift(newComment)
-    console.log(parsedComments)
-    // const newJSONString = JSON.stringify(parsedComments)
+
+    const commentReturn = JSON.stringify(parsedComments)
     const apiCall = async () => {
-      const { REACT_APP_BASE_URL, REACT_APP_AIRTABLE_API_KEY } = process.env
-      const res = await axios.patch(`${REACT_APP_BASE_URL}/Content`, {
+
+      const res = await axios.patch(`${REACT_APP_BASE_URL}Content/${id}`, {
         fields: {
-          comments: JSON.stringify(parsedComments)
+          comments: commentReturn,
         }
       }, {
         headers: {
-          'Authorization': `${REACT_APP_AIRTABLE_API_KEY}`,
+          'Authorization': `Bearer ${REACT_APP_AIRTABLE_API_KEY}`,
           'Content-Type': 'application/json'
         }
       })
     }
-    // apiCall()
+    apiCall()
   }
 
   // ANIMATION CREDIT TO SOLEIL SOLOMON

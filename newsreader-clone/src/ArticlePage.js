@@ -5,7 +5,6 @@ import styled, { keyframes } from 'styled-components'
 import Header from './Header'
 import Body from './Body'
 import Footer from './Footer'
-import Recommendations from './Recommendations'
 import CommentsCard from './CommentsCard'
 
 
@@ -68,7 +67,6 @@ export default function ArticlePage() {
         <Footer article={article} toggleComments={() => toggleComments()} />
       </Article>
       {commentOverlay && <CommentsCard contentObject={article} toggleComments={() => toggleComments()} />}
-      <Recommendations />
     </>
   )
 

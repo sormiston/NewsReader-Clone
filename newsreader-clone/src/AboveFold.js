@@ -1,8 +1,8 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+
 import styled from 'styled-components'
 import HeroArticle from './HeroArticle'
-import ArticleBulletin from './ArticleBulletin'
+
 
 export default function AboveFold({ heroArticle1, heroArticle2, news }) {
 
@@ -15,9 +15,7 @@ export default function AboveFold({ heroArticle1, heroArticle2, news }) {
     font-size: 1rem;
   }
   
-  /* img {
-    max-height: 600px;
-  } */
+  
   @media screen and (max-width: 395px) {
     text-overflow: ellipsis;
   .subtitle {
