@@ -1,12 +1,12 @@
 import React from 'react'
-
 import styled from 'styled-components'
-import HeroArticle from './HeroArticle'
+import ArticleTile from './ArticleTile'
+import ArticleBullet from './ArticleBullet'
 
-
-export default function AboveFold({ heroArticle1, heroArticle2, news }) {
-
-  const AboveFold = styled.section`
+const StyledAboveFold = styled.section`
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 2rem;
   h1 {
     font-size: 1.75rem;
     line-height: 1.2;
@@ -15,29 +15,39 @@ export default function AboveFold({ heroArticle1, heroArticle2, news }) {
     font-size: 1rem;
   }
   
+  @media screen and (max-width: 1030px) {
+  .isSecondary {
+    display: none;
+   }
+  }
+  
+  @media screen and (max-width: 680px) {
+    .flex-3 {
+      
+    }
+  }
   
   @media screen and (max-width: 395px) {
     text-overflow: ellipsis;
   .subtitle {
     margin-bottom: -20px;
-  }
-}
-@media screen and (max-width: 1030px) {
-  .isSecondary {
-    display: none;
-  }
-  
-}
-  `
+   }
+  }`
 
+export default function AboveFold({ heroArticle1, heroArticle2, news }) {
   return (
 
-    <AboveFold>
-      <HeroArticle contentObject={heroArticle1} isHero={true} isSecondary={false} />
-      {news.map(news => <HeroArticle contentObject={news} isHero={false} />)}
-      <HeroArticle contentObject={heroArticle2} isHero={true} isSecondary={true} />
-
-    </AboveFold>
+    <StyledAboveFold className="flex-1">
+      <div className="flex-2">
+        <ArticleTile contentObject={heroArticle1} isSecondary={false} />
+      </div>
+      <div className="flex-3">
+        {news.map(news => <ArticleBullet contentObject={news} />)}
+      </div>
+      <div className="flex-4">
+        <ArticleTile contentObject={heroArticle2} isSecondary={true} />
+      </div>
+    </StyledAboveFold>
 
   )
 }

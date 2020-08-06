@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
-
-export default function Header({ article }) {
-  // STYLED COMPONENTS
-  const StyledHeader = styled.header`
+// STYLED COMPONENTS
+const StyledHeader = styled.header`
   
   .hero {
     max-height: 6vh;
@@ -16,6 +14,9 @@ export default function Header({ article }) {
     font-weight: 800;
   }
   `
+
+export default function Header({ article }) {
+
   return (
     <StyledHeader>
       <section className="hero is-dark">
