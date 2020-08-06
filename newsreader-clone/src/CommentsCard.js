@@ -59,7 +59,7 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
 
   const commentsCardRef = createRef()
   useEffect(() => {
-    console.log(commentsCardRef.current)
+
     if (commentOverlay) {
       commentsCardRef.current.style.height = '85vh'
       commentsCardRef.current.style.opacity = '1'
@@ -68,6 +68,29 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
       commentsCardRef.current.style.opacity = 0
     }
   }, [commentOverlay])
+
+  // useEffect to re-render
+
+  const patchCall = async (patch) => {
+    const res = await axios.patch(`${REACT_APP_BASE_URL}Content/${id}`, {
+      fields: {
+        comments: patch,
+      }
+    }, {
+      headers: {
+        'Authorization': `Bearer ${REACT_APP_AIRTABLE_API_KEY}`,
+        'Content-Type': 'application/json'
+      }
+    })
+  }
+  const getCall = async () => {
+    const res = await axios.get(`${REACT_APP_BASE_URL}Content/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${REACT_APP_AIRTABLE_API_KEY}`,
+      }
+    })
+    setParsedComments(JSON.parse(res.data.fields.comments))
+  }
 
   const addComment = (string) => {
     setDataLoading(true)
@@ -78,44 +101,25 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
       claps: 0,
     }
     parsedComments.unshift(newComment) // dangerous to modify state variable directly via side effect, here ?
-    const commentReturn = JSON.stringify(parsedComments)
-    const patchCall = async () => {
-
-      const res = await axios.patch(`${REACT_APP_BASE_URL}Content/${id}`, {
-        fields: {
-          comments: commentReturn,
-        }
-      }, {
-        headers: {
-          'Authorization': `Bearer ${REACT_APP_AIRTABLE_API_KEY}`,
-          'Content-Type': 'application/json'
-        }
-      })
-    }
-    patchCall()
-    setDidPostComment(didPostComment + 1)
-
-    const getCall = async () => {
-      const res = await axios.get(`${REACT_APP_BASE_URL}Content/${id}`, {
-        headers: {
-          'Authorization': `Bearer ${REACT_APP_AIRTABLE_API_KEY}`,
-        }
-      })
-      console.log(res.data.fields.comments)
-      setParsedComments(JSON.parse(res.data.fields.comments))
-
-    }
+    const patch = JSON.stringify(parsedComments)
+    patchCall(patch)
     getCall()
     setDidPostComment(didPostComment + 1)
     setDataLoading(false)
+  }
+
+  const editComment = (update, idx) => {
+    // console.log(string, idx)
+    // console.log(parsedComments)
+    setDataLoading(true)
+    parsedComments[idx].comment = update
     console.log(parsedComments)
+    const patch = JSON.stringify(parsedComments)
+    patchCall(patch)
+    getCall()
+    setDidPostComment(didPostComment + 1)
+    setDataLoading(false)
   }
-
-  const editComment = (string) => {
-    console.log(string)
-  }
-
-
 
   return (
 
@@ -125,10 +129,8 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
           Responses ({parsedComments.length})
           <button className="delete mr-5" onClick={toggleComments}></button></h2>
         <CommentInput addComment={addComment} />
-        {!dataLoading && parsedComments.map(comment => <Comment comment={comment} editComment={editComment} />)}
+        {!dataLoading && parsedComments.map((comment, idx) => <Comment comment={comment} editComment={editComment} thisCommentIdx={idx} />)}
       </div>
     </StyledCommentsCard>
-
-
   )
 }
