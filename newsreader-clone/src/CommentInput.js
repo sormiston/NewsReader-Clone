@@ -13,7 +13,6 @@ export default function CommentInput({ addComment }) {
     setUserComment('')
     setExpandTextArea(false)
 
-
   }
   return (
     <div className="box">

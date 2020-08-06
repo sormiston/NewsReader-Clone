@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createRef, useRef } from 'react'
+import React, { useEffect, useState, createRef } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import styled, { keyframes } from 'styled-components'
@@ -57,7 +57,7 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
   const [parsedComments, setParsedComments] = useState(JSON.parse(contentObject.comments))
   const [didPostComment, setDidPostComment] = useState(0)
 
-  const commentsCardRef = createRef(0)
+  const commentsCardRef = createRef()
   useEffect(() => {
     console.log(commentsCardRef.current)
     if (commentOverlay) {
@@ -110,6 +110,8 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
     setDataLoading(false)
     console.log(parsedComments)
   }
+
+
 
   return (
 

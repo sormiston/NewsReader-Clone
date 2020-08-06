@@ -19,9 +19,16 @@ body {
   flex-flow: column nowrap;
 } */
 
-.react-router-link {
+.react-router-link,
+i {
   color: unset;
   text-decoration: unset;
+  cursor: pointer;
+}
+
+.fa {
+  display: inline-block;
+  font-size: 1.75em;
 }
 
 @media screen and (max-width: 395px) {

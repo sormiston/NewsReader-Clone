@@ -18,7 +18,6 @@ export default function Footer({ article, toggleComments }) {
         <div className="level-left px-5">
           <span className="icon"><i className="fa fa-hand-lizard-o" aria-hidden="true"></i><span>{article.numClaps}</span></span>
           <span className="icon px-6" ><i className="fa fa-comment" onClick={toggleComments}></i></span>
-          <button onClick={toggleComments}>Click Me</button>
         </div>
 
       </div>

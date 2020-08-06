@@ -1,6 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, createRef } from 'react'
+
 
 export default function Comments({ parsedComments }) {
+  const dropdownRef = createRef()
+  const handleDropdown = () => {
+    dropdownRef.current.classList.toggle('is-active')
+  }
   return (
     <>
       {parsedComments.map(comment =>
@@ -12,7 +17,22 @@ export default function Comments({ parsedComments }) {
               </figure>
               <h5 className="title is-6">{comment.name}</h5>
             </span>
-            <span className="icon"><i className="fa fa-ellipsis-h" aria-hidden="true"></i></span>
+            <div className="dropdown" ref={dropdownRef}>
+              <div className="dropdown-trigger">
+                <button className="button" aria-haspopup="true" aria-controls="dropdown-menu" onClick={handleDropdown} >
+                  <span className="icon is-large">
+                    <i className="fa fa-ellipsis-h" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+              <div className="dropdown-menu">
+                <div className="dropdown-content">
+                  <div className="dropdown-item">
+                    <p>{true && 'YEAH'}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <p>
             {comment.comment}

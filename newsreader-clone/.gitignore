@@ -7,9 +7,10 @@
 
 # testing
 /coverage
-
+/src/scrap.js
 # production
 /build
+
 
 # misc
 .DS_Store
