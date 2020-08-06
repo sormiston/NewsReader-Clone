@@ -81,7 +81,7 @@ https://drive.google.com/file/d/19J0KZfZm5BVE-utuhHGZm4zQBS1TzezH/view?usp=shari
 
 Strengths: I already have some practice/experience generating HTML content through iterators, and organizing "high volume" elements from a high level
 I have a very keen eye and focus when driven to reproduce things in detail
-  
+
 Weaknesses: I tend to run behind my own schedule, consistently, and expend energy fretting about it.
 
 Opportunities: Excellent chance to demonstrate my capability for abstraction and scalability. Excellent opportunity to go "scavenger hunting" through Bulma's
@@ -104,6 +104,10 @@ On the note of style, it is VERY hard to NOT style as you go. Especially since I
 
 Wednesday
 Overriding Bulma's styles is certainly now more cumbersome than writing from scratch. The difficulty is that I can't yet what my eye sees into meaningful CSS. So for educational purposes, it is interesting to get a package of "ready made" CSS via Bulma, see what it contains and what it does NOT contain, and from there make judgement calls to knock things into place. SLOW, not a real "workflow" but a good learning experience, I think?
+
+Thursday
+Design Highlight -- for smooth UX, CommentsCard is rendered after AXIOS Get in ArticlePage.js (!dataLoading && ) -- ready, but hidden.
+CommentsCard component is then locally responsible for patch/get requests to avoid re-rendering across generations.
 
 ## Issues
 

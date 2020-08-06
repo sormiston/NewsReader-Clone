@@ -6,8 +6,6 @@ import Header from './Header'
 import Body from './Body'
 import Footer from './Footer'
 import CommentsCard from './CommentsCard'
-
-
 // is the second API call necessary?  NO way to do this with props?
 // Possible to reduce API Calls (4, as of commit post-b5ac835 ) by folding state hooks into one state object?
 
@@ -16,9 +14,9 @@ export default function ArticlePage() {
   const id = params.id
   const { REACT_APP_BASE_URL, REACT_APP_AIRTABLE_API_KEY } = process.env
   const [article, setArticle] = useState({})
+  // data loading state -- refers to return from AXIOS call.  For future experiments with loading icons.  "True" at component mount time.
   const [dataLoading, setDataLoading] = useState(true)
   const [commentOverlay, setCommentOverlay] = useState(false)
-
   // Note: API call contains a query parameter provided by useParams hook.  It will fetch one specific article.
   useEffect(() => {
     const apiCall = async () => {
@@ -32,16 +30,10 @@ export default function ArticlePage() {
       setDataLoading(false)
     }
     apiCall()
-
   }, [])
-
-
-
   const toggleComments = () => {
     setCommentOverlay(!commentOverlay)
-
   }
-
   return (
     <>
       <article>
@@ -52,7 +44,5 @@ export default function ArticlePage() {
       {!dataLoading && <CommentsCard contentObject={article} toggleComments={() => toggleComments()} commentOverlay={commentOverlay} />}
     </>
   )
-
 }
 
-{/* // Remember to put back on line 70! {commentOverlay && } */ }

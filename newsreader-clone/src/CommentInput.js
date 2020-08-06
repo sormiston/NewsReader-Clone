@@ -15,7 +15,6 @@ export default function CommentInput({ addComment }) {
 
 
   }
-  console.log(userComment)
   return (
     <div className="box">
       <div className="user-head">

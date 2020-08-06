@@ -52,8 +52,8 @@ const StyledCommentsCard = styled.main`
 export default function CommentsCard({ contentObject, toggleComments, commentOverlay }) {
   const params = useParams()
   const id = params.id
-
   const { REACT_APP_BASE_URL, REACT_APP_AIRTABLE_API_KEY } = process.env
+  const [dataLoading, setDataLoading] = useState(false)
   const [parsedComments, setParsedComments] = useState(JSON.parse(contentObject.comments))
   const [didPostComment, setDidPostComment] = useState(0)
 
@@ -69,19 +69,17 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
     }
   }, [commentOverlay])
 
-
-
   const addComment = (string) => {
+    setDataLoading(true)
     const newComment = {
       name: localStorage.getItem('name'),
       profile: localStorage.getItem('profile'),
       comment: string,
       claps: 0,
     }
-    parsedComments.unshift(newComment)
-
+    parsedComments.unshift(newComment) // dangerous to modify state variable directly via side effect, here ?
     const commentReturn = JSON.stringify(parsedComments)
-    const apiCall = async () => {
+    const patchCall = async () => {
 
       const res = await axios.patch(`${REACT_APP_BASE_URL}Content/${id}`, {
         fields: {
@@ -94,10 +92,24 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
         }
       })
     }
-    apiCall()
-    setDidPostComment(prev => prev++)
-  }
+    patchCall()
+    setDidPostComment(didPostComment + 1)
 
+    const getCall = async () => {
+      const res = await axios.get(`${REACT_APP_BASE_URL}Content/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${REACT_APP_AIRTABLE_API_KEY}`,
+        }
+      })
+      console.log(res.data.fields.comments)
+      setParsedComments(JSON.parse(res.data.fields.comments))
+
+    }
+    getCall()
+    setDidPostComment(didPostComment + 1)
+    setDataLoading(false)
+    console.log(parsedComments)
+  }
 
   return (
 
@@ -107,7 +119,7 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
           Responses ({parsedComments.length})
           <button className="delete mr-5" onClick={toggleComments}></button></h2>
         <CommentInput addComment={addComment} />
-        <Comments parsedComments={parsedComments} />
+        {!dataLoading && <Comments parsedComments={parsedComments} />}
       </div>
     </StyledCommentsCard>
 
