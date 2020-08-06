@@ -1,19 +1,33 @@
 import React, { useEffect, useState, createRef } from 'react'
+import styled from 'styled-components'
 
 
-export default function Comment({ comment }) {
+
+export default function Comment({ comment, editComment }) {
+  const [editing, setEditing] = useState(false)
+  const [userEditedComment, setUserEditedComment] = useState('')
+  console.log(editing)
+
   const dropdownRef = createRef()
   const handleDropdown = () => {
     dropdownRef.current.classList.toggle('is-active')
   }
 
+  const handleEditComment = () => {
+    editComment(userEditedComment)
+    setEditing(false)
+  }
+
   const ownCommentDropdownContent = (
     <div className="dropdown-content">
       <div className="dropdown-item">
-        <small>Edit</small>
+        <small onClick={() => {
+          setEditing(true)
+          handleDropdown()
+        }}>Edit</small>
       </div>
       <div className="dropdown-item">
-        <small>Delete</small>
+        <small onClick={() => alert('delete')}>Delete</small>
       </div>
     </div>
   )
@@ -25,6 +39,25 @@ export default function Comment({ comment }) {
       </div>
     </div>
   )
+
+  const editCommentElement = (
+    <div className="content">
+      <textarea display="block" className="edit-textarea" placeholder={comment.comment} value={userEditedComment} rows={4}
+        onChange={(e) => setUserEditedComment(e.target.value)} >
+      </textarea>
+      <button className="button is-primary" onClick={() => handleEditComment()}>Submit</button>
+      <button className="button cancel" onClick>Cancel</button>
+    </div>
+  )
+
+  const defaultCommentElement = (
+    <div className="content">
+      <p>
+        {comment.comment}
+      </p>
+    </div>
+  )
+
   return (
 
     <div className="box">
@@ -48,9 +81,7 @@ export default function Comment({ comment }) {
           </div>
         </div>
       </div>
-      <p>
-        {comment.comment}
-      </p>
+      {editing ? editCommentElement : defaultCommentElement}
       <footer>
         <span><i className="fa fa-hand-lizard-o" aria-hidden="true"></i>{comment.claps}</span>
         <span><i className="fa fa-comment"></i></span>

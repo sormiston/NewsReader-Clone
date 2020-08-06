@@ -111,6 +111,10 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
     console.log(parsedComments)
   }
 
+  const editComment = (string) => {
+    console.log(string)
+  }
+
 
 
   return (
@@ -121,7 +125,7 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
           Responses ({parsedComments.length})
           <button className="delete mr-5" onClick={toggleComments}></button></h2>
         <CommentInput addComment={addComment} />
-        {!dataLoading && parsedComments.map(comment => <Comment comment={comment} />)}
+        {!dataLoading && parsedComments.map(comment => <Comment comment={comment} editComment={editComment} />)}
       </div>
     </StyledCommentsCard>
 
