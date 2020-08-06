@@ -1,17 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, createRef, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import styled, { keyframes } from 'styled-components'
 import CommentInput from './CommentInput'
 import Comments from './Comments'
 
-export default function CommentsCard({ contentObject, toggleComments }) {
+export default function CommentsCard({ contentObject, toggleComments, commentOverlay }) {
   const params = useParams()
   const id = params.id
 
   const { REACT_APP_BASE_URL, REACT_APP_AIRTABLE_API_KEY } = process.env
   const [parsedComments, setParsedComments] = useState(JSON.parse(contentObject.comments))
   const [didPostComment, setDidPostComment] = useState(0)
+
+  const commentsCardRef = createRef(0)
+  useEffect(() => {
+    console.log(commentsCardRef.current)
+    if (commentOverlay) {
+      commentsCardRef.current.style.height = '85vh'
+      commentsCardRef.current.style.opacity = '1'
+    } else {
+      commentsCardRef.current.style.height = '1%'
+      commentsCardRef.current.style.opacity = 0
+    }  /* ANIMATION CREDIT TO SOLEIL SOLOMON */
+    // animation: ${load} 1s forwards;
+  }, [commentOverlay])
 
 
 
@@ -41,8 +54,6 @@ export default function CommentsCard({ contentObject, toggleComments }) {
     apiCall()
     setDidPostComment(prev => prev++)
   }
-
-  // ANIMATION CREDIT TO SOLEIL SOLOMON
   if (didPostComment == false) {
     var load = (props) => keyframes`
    from {
@@ -60,21 +71,21 @@ export default function CommentsCard({ contentObject, toggleComments }) {
       height: 85vh;
     }`
   }
-
-
-  // end citaton
   const CommentsCard = styled.main`  
      
     position: fixed;
     width: 100%;
-    border-top: 1px;
+    border-top: 2px solid grey;
+    box-shadow: 0px -15vh 15vh 15vh;
     border-radius: 5%;
     background-color: white;
-    /* height: 85vh; */
+    transition: height 1s ease-in-out;
     z-index: 1;
-    bottom: 1%;
-    /* ANIMATION CREDIT TO SOLEIL SOLOMON */
-    animation: ${load} 1s forwards;
+    bottom: 1vh;
+    height: 1vh;
+    opacity: 0;
+   
+    
   .box {
     padding: .8rem;
     margin: .2rem;
@@ -106,7 +117,7 @@ export default function CommentsCard({ contentObject, toggleComments }) {
   `
   return (
 
-    <CommentsCard>
+    <CommentsCard ref={commentsCardRef}>
       <div className="container">
         <h2 className="title is-3 mt-6 ml-5 response-head">
           Responses (3)

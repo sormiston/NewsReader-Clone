@@ -35,38 +35,21 @@ export default function ArticlePage() {
 
   }, [])
 
-  // ANIMATION THANKS TO SOLEIL SOLOMON!
 
-  const load = (props) => keyframes`
-    from {
-      background-color: rgba(0,0,0,0);
-      filter: brightness(1);
-    } 
-    to {
-      background-color: rgba(0,0,0,0.4);
-      filter: brightness(0.5); 
-    }
-   `
-  const Article = styled.article`  
-   background-color: ${commentOverlay ? 'rgba(0,0,0,0.4)' : 'rgba(0,0,0,0)'};
-   filter: ${commentOverlay ? 'brightness(0.5)' : 'brightness(1)'};
-   animation: ${load} ${commentOverlay ? '1s normal' : '.01s reverse'}
-   
- `
-  // end citation
 
   const toggleComments = () => {
     setCommentOverlay(!commentOverlay)
+
   }
 
   return (
     <>
-      <Article>
+      <article>
         <Header article={article} />
         <Body />
         <Footer article={article} toggleComments={toggleComments} />
-      </Article>
-      {commentOverlay && <CommentsCard contentObject={article} toggleComments={() => toggleComments()} />}
+      </article>
+      {!dataLoading && <CommentsCard contentObject={article} toggleComments={() => toggleComments()} commentOverlay={commentOverlay} />}
     </>
   )
 
