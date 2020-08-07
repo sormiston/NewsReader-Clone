@@ -74,7 +74,7 @@ https://drive.google.com/file/d/1XJ-RzlxrrwPygIRSYmMUFboQotY9HZHK/view?usp=shari
 
 ## Component Hierarchy
 
-https://drive.google.com/file/d/19J0KZfZm5BVE-utuhHGZm4zQBS1TzezH/view?usp=sharing
+https://drive.google.com/file/d/13vkJLtizEeqSsIAcCjDxJsY6QJcES9Zw/view?usp=sharing
 
 ## SWOT
 
