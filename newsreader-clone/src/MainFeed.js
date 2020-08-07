@@ -19,7 +19,7 @@ export default function MainFeed() {
           Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`
         }
       })
-      // console.log(res.data.records)
+
 
       const randomize = (array) => {
         const result = []

@@ -19,7 +19,7 @@ export default function Comment({ comment, editComment, deleteComment, thisComme
   }
 
   const handleEditComment = () => {
-    console.log(userEditedComment)
+
     editComment(userEditedComment, thisCommentIdx)
     setEditing(false)
   }

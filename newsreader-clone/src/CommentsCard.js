@@ -16,8 +16,7 @@ const StyledCommentsCard = styled.main`
     transition: height 1s ease-in-out;
     z-index: 1;
     bottom: 1vh;
-    height: 1vh;
-    opacity: 0;
+    
     overflow-y: scroll;
    
   .box {
@@ -56,21 +55,22 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
   const [dataLoading, setDataLoading] = useState(false)
   const [parsedComments, setParsedComments] = useState(JSON.parse(contentObject.comments))
   const [didPostComment, setDidPostComment] = useState(0)
-
   const commentsCardRef = createRef()
-  useEffect(() => {
 
+  useEffect(() => {
+    console.log('in useEffect: ' + commentsCardRef.current.style.height)
     if (commentOverlay) {
+
       commentsCardRef.current.style.height = '85vh'
       commentsCardRef.current.style.opacity = '1'
     } else {
-      commentsCardRef.current.style.height = '1%'
+      commentsCardRef.current.style.height = '1vh'
       commentsCardRef.current.style.opacity = 0
     }
   }, [commentOverlay])
 
   // useEffect to re-render
-
+  console.log('re-rendering')
   const patchCall = async (patch) => {
     const res = await axios.patch(`${REACT_APP_BASE_URL}Content/${id}`, {
       fields: {

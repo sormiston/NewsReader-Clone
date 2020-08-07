@@ -4,15 +4,7 @@ import styled from 'styled-components'
 // STYLED COMPONENTS
 const StyledHeader = styled.header`
   
-  .hero {
-    max-height: 6vh;
-  }
-  .hero-body {
-    padding: .5rem;
-    text-align: left;
-  } .title-2 {
-    font-weight: 800;
-  }
+  
   `
 
 export default function Header({ article }) {
@@ -28,18 +20,19 @@ export default function Header({ article }) {
       </section>
       <figure className="image is-3by2">
         <img src={article.imgLarge} />
-
       </figure>
       <figcaption>{article.photoCredit}</figcaption>
       <div className="container">
         <div className="title is-4">{article.headline}</div>
         <div className="subtitle is-6">{article.subHeadline}</div>
 
-        <span className="icon"><i className="fa fa-twitter-square" aria-hidden="true"></i></span>
-        <span className="icon"><i className="fa fa-linkedin-square" aria-hidden="true"></i></span>
-        <span className="icon"><i className="fa fa-facebook-square" aria-hidden="true"></i></span>
-        <span className="icon"><i className="fa fa-bookmark-o" aria-hidden="true"></i></span>
-        <span className="icon"><i className="fa fa-ellipsis-h" aria-hidden="true"></i></span>
+        <div className="icon-bank">
+          <span className="icon"><i className="fa fa-twitter-square" aria-hidden="true"></i></span>
+          <span className="icon"><i className="fa fa-linkedin-square" aria-hidden="true"></i></span>
+          <span className="icon"><i className="fa fa-facebook-square" aria-hidden="true"></i></span>
+          <span className="icon"><i className="fa fa-bookmark-o" aria-hidden="true"></i></span>
+          <span className="icon"><i className="fa fa-ellipsis-h" aria-hidden="true"></i></span>
+        </div>
 
         <div className="media">
           <div className="media-left"></div>
