@@ -1,9 +1,14 @@
 import React, { useEffect, useState, createRef } from 'react'
 import styled from 'styled-components'
 
+const StyledComment = styled.div`
+small:hover {
+cursor: pointer;
+text-decoration: underline;
+}
+`
 
-
-export default function Comment({ comment, editComment, thisCommentIdx }) {
+export default function Comment({ comment, editComment, deleteComment, thisCommentIdx }) {
   const [editing, setEditing] = useState(false)
   const [userEditedComment, setUserEditedComment] = useState(comment.comment)
 
@@ -14,6 +19,7 @@ export default function Comment({ comment, editComment, thisCommentIdx }) {
   }
 
   const handleEditComment = () => {
+    console.log(userEditedComment)
     editComment(userEditedComment, thisCommentIdx)
     setEditing(false)
   }
@@ -27,7 +33,10 @@ export default function Comment({ comment, editComment, thisCommentIdx }) {
         }}>Edit</small>
       </div>
       <div className="dropdown-item">
-        <small onClick={() => alert('delete')}>Delete</small>
+        <small onClick={() => {
+          alert('This will be deleted.  Some day, this will be a modal, and maybe it will even give you a choice.  But for now, no choice.')
+          deleteComment(thisCommentIdx)
+        }}>Delete</small>
       </div>
     </div>
   )
@@ -59,8 +68,7 @@ export default function Comment({ comment, editComment, thisCommentIdx }) {
   )
 
   return (
-
-    <div className="box">
+    <StyledComment className="box">
       <div className="user-head">
         <span display="inline-block">
           <figure className="media-left image is-32x32">
@@ -86,7 +94,7 @@ export default function Comment({ comment, editComment, thisCommentIdx }) {
         <span><i className="fa fa-hand-lizard-o" aria-hidden="true"></i>{comment.claps}</span>
         <span><i className="fa fa-comment"></i></span>
       </footer>
-    </div>
+    </StyledComment>
   )
 
 }

@@ -1,12 +1,12 @@
 import React, { useEffect, useState, createRef } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import CommentInput from './CommentInput'
 import Comment from './Comment'
 
-const StyledCommentsCard = styled.main`  
-     
+const StyledCommentsCard = styled.main`
+  
     position: fixed;
     width: 100%;
     border-top: 2px solid grey;
@@ -18,8 +18,8 @@ const StyledCommentsCard = styled.main`
     bottom: 1vh;
     height: 1vh;
     opacity: 0;
+    overflow-y: scroll;
    
-    
   .box {
     padding: .8rem;
     margin: .2rem;
@@ -109,11 +109,18 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
   }
 
   const editComment = (update, idx) => {
-    // console.log(string, idx)
-    // console.log(parsedComments)
     setDataLoading(true)
     parsedComments[idx].comment = update
-    console.log(parsedComments)
+    const patch = JSON.stringify(parsedComments)
+    patchCall(patch)
+    getCall()
+    setDidPostComment(didPostComment + 1)
+    setDataLoading(false)
+  }
+
+  const deleteComment = (idx) => {
+    setDataLoading(true)
+    parsedComments.splice(idx, 1)
     const patch = JSON.stringify(parsedComments)
     patchCall(patch)
     getCall()
@@ -129,7 +136,7 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
           Responses ({parsedComments.length})
           <button className="delete mr-5" onClick={toggleComments}></button></h2>
         <CommentInput addComment={addComment} />
-        {!dataLoading && parsedComments.map((comment, idx) => <Comment comment={comment} editComment={editComment} thisCommentIdx={idx} />)}
+        {!dataLoading && parsedComments.map((comment, idx) => <Comment comment={comment} editComment={editComment} deleteComment={deleteComment} thisCommentIdx={idx} />)}
       </div>
     </StyledCommentsCard>
   )
