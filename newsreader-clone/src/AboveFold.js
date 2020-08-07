@@ -7,12 +7,26 @@ const StyledAboveFold = styled.section`
   display: flex;
   flex-flow: column nowrap;
   margin: 2rem;
+  
+   > div {
+    padding-top: 2rem;
+  }
+  
+  .flex-3 > div {
+    padding-top: 1rem;
+  }
+  h1, h3 {
+    line-height: 1.2;
+  }
   h1 {
     font-size: 1.75rem;
-    line-height: 1.2;
+  
   }
   h3 {
     font-size: 1rem;
+  }
+  img {
+    background-size: cover;
   }
   
   @media screen and (max-width: 1030px) {

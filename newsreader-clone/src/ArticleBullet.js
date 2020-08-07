@@ -7,12 +7,12 @@ const StyledArticleBullet = styled.div`
   margin: auto;
   overflow-x: hidden;
   
-  .flex-1 {
+  .flex-1a {
     display: flex;
     flex-flow: row-reverse nowrap;
     justify-content: space-between;
   }
-  .flex-2 {
+  .flex-2a {
     display: flex;
     flex-flow: column nowrap;
   }
@@ -29,13 +29,13 @@ export default function ArticleTile({ contentObject, isSecondary }) {
   if (isSecondary) customClassMarker = customClassMarker.concat(' isSecondary')
 
   return (
-    <StyledArticleBullet>
+    <StyledArticleBullet className="article-bullet-js">
       <Link className="react-router-link" to={`/${contentObject.id}`} >
-        <div className="flex-1">
+        <div className="flex-1a">
 
           <img src={contentObject.fields.imgLarge} />
 .
-          <div className="flex-2">
+          <div className="flex-2a">
             <h1><strong>{contentObject.fields.headline}</strong></h1>
             <div className="subtitle">{contentObject.fields.subHeadline}</div>
             <div className="media">
