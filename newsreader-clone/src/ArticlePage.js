@@ -22,9 +22,17 @@ const StyledArticle = styled.main`
   figcaption {
     text-align: center;
   }
-  div.subtitle.is-6 {
-    margin-bottom: .75rem;
+ .subtitle.supertitle-actually {
+   
+ }
+  .content {
+    padding-bottom: 2rem;
   }
+  
+  div.tags.are-medium {
+    justify-content: center;
+    padding-bottom: 2rem;
+  } 
   .icon-bank {
     display: flex;
     justify-content: space-evenly;
@@ -32,7 +40,20 @@ const StyledArticle = styled.main`
     margin-bottom: .75rem;
   }
   i {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+  }
+  div.media-right {
+    flex: 1 0 400px;
+  }
+  
+  @media screen and (max-width: 700px) {
+    div.media.media-left, div.media-content.content {
+    flex: 0 0 100%;  
+    }
+    
+    div.media-right {
+      flex: 1 1;
+    }
   }
      
 `

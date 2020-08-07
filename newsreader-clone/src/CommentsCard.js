@@ -58,9 +58,8 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
   const commentsCardRef = createRef()
 
   useEffect(() => {
-    console.log('in useEffect: ' + commentsCardRef.current.style.height)
-    if (commentOverlay) {
 
+    if (commentOverlay) {
       commentsCardRef.current.style.height = '85vh'
       commentsCardRef.current.style.opacity = '1'
     } else {
@@ -69,8 +68,7 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
     }
   }, [commentOverlay])
 
-  // useEffect to re-render
-  console.log('re-rendering')
+
   const patchCall = async (patch) => {
     const res = await axios.patch(`${REACT_APP_BASE_URL}Content/${id}`, {
       fields: {
@@ -136,7 +134,7 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
           Responses ({parsedComments.length})
           <button className="delete mr-5" onClick={toggleComments}></button></h2>
         <CommentInput addComment={addComment} />
-        {!dataLoading && parsedComments.map((comment, idx) => <Comment comment={comment} editComment={editComment} deleteComment={deleteComment} thisCommentIdx={idx} />)}
+        {!dataLoading && parsedComments.map((comment, idx) => <Comment comment={comment} editComment={editComment} deleteComment={deleteComment} thisCommentIdx={idx} key={`${id}${idx}`} />)}
       </div>
     </StyledCommentsCard>
   )

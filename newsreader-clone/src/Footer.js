@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+
 
 export default function Footer({ article, toggleComments }) {
 
@@ -16,8 +16,11 @@ export default function Footer({ article, toggleComments }) {
       </div>
       <div className="level">
         <div className="level-left px-5">
-          <span className="icon"><i className="fa fa-hand-lizard-o" aria-hidden="true"></i><span>{article.numClaps}</span></span>
-          <span className="icon px-6" ><i className="fa fa-comment" onClick={toggleComments}></i></span>
+
+          <div className="icon-bank">
+            <span className="icon"><i className="fa fa-hand-lizard-o" aria-hidden="true"></i><span>{article.numClaps}</span></span>
+            <span className="icon px-6" ><i className="fa fa-comment" onClick={toggleComments}></i></span>
+          </div>
         </div>
 
       </div>
@@ -29,10 +32,13 @@ export default function Footer({ article, toggleComments }) {
         <section className="media-content">
           <div className="content px-3">
             <p className="subtitle supertitle-actually">WRITTEN BY</p>
-            <h6 className="title is-6">{article.author}</h6>
-            <div className="subtitle is-6">{article.date}<a className="button is-small is-info is-outlined" href="">Follow</a></div>
+            <h6 className="title is-5">{article.author}</h6>
+            <div className="subtitle is-6">{article.date}</div>
           </div>
         </section>
+        <div className="media-right">
+          <a className="button is-small is-info is-outlined" href="">Follow</a>
+        </div>
 
       </div>
     </>

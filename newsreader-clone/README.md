@@ -27,8 +27,6 @@ The functionality will then be divided into two separate lists: MVP and PostMVP.
 
 - Render "Main Feed page" with
 
-  - functional bookmark -- bookmarked items will appear in the Reading List portion of the Feed
-
 - Render dynamically generated URL addressed Article pages that relate exactly to their thumbnail links
 
   - Article pages will have a fold-out Comments section with post and update functionality \*\* challenge
@@ -37,6 +35,7 @@ The functionality will then be divided into two separate lists: MVP and PostMVP.
 
 #### PostMVP
 
+- functional bookmark -- bookmarked items will appear in the Reading List portion of the Feed
 - Clickable Tag Categories
 - Article pages will have incrementing Clap counters and bookmark functions
 - dropdown article specific context meny w/ functional "Dismiss this story" button
@@ -47,10 +46,10 @@ The functionality will then be divided into two separate lists: MVP and PostMVP.
 
 | Day   | Deliverable                                                                                        | Status     |
 | ----- | -------------------------------------------------------------------------------------------------- | ---------- |
-| Aug 3 | Approval/ Populate Airtable / Initialize React Components / Raw main feed rendering                | Incomplete |
-| Aug 4 | Finish/troubleshoot main feed rendering / Show Article Page w/ Comment section                     | Incomplete |
-| Aug 5 | Finish/troubleshoot CRUD functionality of Comment section / style comment section and article page | Incomplete |
-| Aug 6 | Style main feed rendering / PostMVP                                                                | Incomplete |
+| Aug 3 | Approval/ Populate Airtable / Initialize React Components / Raw main feed rendering                | Complete   |
+| Aug 4 | Finish/troubleshoot main feed rendering / Show Article Page w/ Comment section                     | Complete   |
+| Aug 5 | Finish/troubleshoot CRUD functionality of Comment section / style comment section and article page | Complete   |
+| Aug 6 | Style main feed rendering                                                                          | Complete   |
 | Aug 7 | Present                                                                                            | Incomplete |
 
 ## Priority Matrix
@@ -79,38 +78,79 @@ https://drive.google.com/file/d/19J0KZfZm5BVE-utuhHGZm4zQBS1TzezH/view?usp=shari
 
 ## SWOT
 
+07-31-2020
 Strengths: I already have some practice/experience generating HTML content through iterators, and organizing "high volume" elements from a high level
-I have a very keen eye and focus when driven to reproduce things in detail
+I have a very keen eye and focus when driven to reproduce things in detail.
 
 Weaknesses: I tend to run behind my own schedule, consistently, and expend energy fretting about it.
 
-Opportunities: Excellent chance to demonstrate my capability for abstraction and scalability. Excellent opportunity to go "scavenger hunting" through Bulma's
-UI components to build quickly with professional style.
+Opportunities: Excellent chance to demonstrate my capability for abstraction and scalability. Excellent opportunity to go "scavenger hunting" through Bulma's UI components to build quickly with professional style.
 
 Threats: No telling what kind of distractions/difficulties may lay in implementing Bulma - will be very documentation dependant.
 The challenges of the comment section are substantial.
 
 ## Code Snippet
 
-## Observations
+```
+const editCommentElement = (
+    <div className="content">
+      <textarea display="block" className="edit-textarea" value={userEditedComment} rows={4}
+        onChange={(e) => setUserEditedComment(e.target.value)} >
+      </textarea>
+      <button className="button is-primary" onClick={() => handleEditComment()}>Submit</button>
+      <button className="button cancel" onClick>Cancel</button>
+    </div>
+  )
 
-Tuesday
-ArticlePage > Header / Footer path .... use of destructured prop { article } enabled me to copy and paste without any dot-notation additions when generating child components ... kinda cool. PRO: my precious data doesn't get longer or more semantically complicated to call .... CON is that its history of passage through the data chain is no longer obvious.
+  const defaultCommentElement = (
+    <div className="content">
+      <p>
+        {comment.comment}
+      </p>
+    </div>
+  )
 
-Using Styled-components to attenuate a pre-defined CSS extension framework (like Bulma) feels like a big win, and a great way to avoid dreaded stylesheets. By opening up a Styled Component declared
-const as a parent container, one can always (?) override the more generalized class rules provided bulma/css/bulma.css. This allows "spot" overriding, without opening up a dreaded stylesheet.
+  ...later, in React function return block ...
 
-On the note of style, it is VERY hard to NOT style as you go. Especially since I am experimenting, there is high-risk of Frankenstyling.
+   <div className="dropdown-menu">
+            {comment.name == localStorage.getItem('name') ? ownCommentDropdownContent : otherCommentDropdownContent}
+          </div>
+```
 
-Wednesday
-Overriding Bulma's styles is certainly now more cumbersome than writing from scratch. The difficulty is that I can't yet what my eye sees into meaningful CSS. So for educational purposes, it is interesting to get a package of "ready made" CSS via Bulma, see what it contains and what it does NOT contain, and from there make judgement calls to knock things into place. SLOW, not a real "workflow" but a good learning experience, I think?
+And, this one in a Styled Component for resposive layout for the Article Footer...
 
-Thursday
-Design Highlight -- for smooth UX, CommentsCard is rendered after AXIOS Get in ArticlePage.js (!dataLoading && ) -- ready, but hidden.
-CommentsCard component is then locally responsible for patch/get requests to avoid re-rendering across generations.
+```
+}
+  div.media-right {
+    flex: 1 0 400px;
+  }
+
+  @media screen and (max-width: 700px) {
+    div.media.media-left, div.media-content.content {
+    flex: 0 0 100%;
+    }
+
+    div.media-right {
+      flex: 1 1;
+    }
+  }
+```
+
+... clearly evidence of someone who knows what they're doing.
+
+The above snippet lays out two alternative React Elements in JSX, assigning each to a variable for easy portability. This portability
+allows for conditional rendering in the context of the component's return block, allowing us to swap out large-ish code structures with
+a single line of ternary logic.
 
 ## Issues
 
+08-07-2020
+
+- That box-shadow on the CommentsCard on scroll-in is hideous. Please figure out a way to darken the article itself on CommentOverlay action.
+
 ## Change Log
 
-Use this section to document what changes were made and the reasoning behind those changes.
+08-08-2020
+
+- for time constraints - main feed render limited to "above the fold" section.
+- functional bookmarking + reading list components moved to MVP items
