@@ -5,36 +5,53 @@ import ArticleBullet from './ArticleBullet'
 
 const StyledAboveFold = styled.section`
   display: flex;
-  flex-flow: row nowrap;
-  margin: .5rem;
+  flex-flow: column nowrap;
+  margin: 2rem;
+    
   font-family:  'Open Sans','arial';
-  
+ 
    > div {
-    padding-top: 2rem;
+
+  }
+  .flex-1a {
+    display: flex;
+    flex-flow: row-reverse;
+    overflow-wrap: break-word;
+  }
+  .flex-1a.spot {
+    display: flex;
+    flex-flow: column;
+  }
+  .flex-2 {
+    padding-bottom: 1rem;
   }
   .flex-3 {
-    margin: 0 .5rem;
+    flex-flow: column;
   }
   .flex-3 > div {
-    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
   h1, h3 {
     line-height: 1.2;
   }
   h1 {
-    font-size: 1.25rem;
-  }
-  h3 {
     font-size: 1rem;
   }
+  h3 {
+    font-size: .75rem;
+  }
+  
   img {
     background-size: auto;
   }
+  .isSecondary {
+    display: none;
+   }
   .flex-2a {
     display: flex;
     flex-flow: column nowrap;
     width: 75%;
-    justify-content: space-between;
+    justify-content: space-around;
   }
   .flex-3a {
   display: flex;
@@ -43,30 +60,74 @@ const StyledAboveFold = styled.section`
   justify-content: space-between;
 }
 
-  @media screen and (max-width: 1030px) {
-  .isSecondary {
+@media screen and (max-width: 395px) {
+    text-overflow: ellipsis;
+  .subtitle {
     display: none;
    }
   }
-  
-  @media screen and (max-width: 740px) {
-    flex-flow: column nowrap;
-    margin: 2rem;
-  }
     @media screen and (min-width: 741px) {
-      .subtitle > h3 {
-        visibility: hidden;
+      flex-flow: row nowrap;
+       margin: .5rem;
+       
+       .flex-3 {
+         margin: 0 1rem;
+       }
+       .subtitle > h3 {
+        display: none;
+      }
+      .flex-1a {
+        width: 45vw;
+        height: 150px;
+        flex-flow: row;
         
+      }
+      .flex-1a img {
+        max-height: 200px;
+        background-size: cover;
+        order: -1;
+      }
+      .flex-2a {
+        width: 100%;
       }
     }
     
-  
-  @media screen and (max-width: 395px) {
-    text-overflow: ellipsis;
-  .subtitle {
-    margin-bottom: -20px;
+    @media screen and (min-width: 1030px) {
+    div.flex-4 {
+     
+    }
+      div.flex-3 {
+      flex-shrink: 0;
+    }
+      div.flex-2 {
+        flex-basis: 300px;
+      }
+      .flex-1a {
+        height: 100%;
+      }
+      .flex-1a.spot {
+      width: inherit;
+      
+      .flex-1a.spot img {
+      max-width: 300px;
+      }
+    
+      .flex-2a.spot {
+        max-width: inherit;
+      }
+    }
+    .flex-3 {
+      min-width: 34%;
+    }
+    .subtitle > h3 {
+      display: initial;
+    }
+   .isSecondary {
+    display: initial;
    }
-  }`
+  }
+    
+ `
 
 export default function AboveFold({ heroArticle1, heroArticle2, news }) {
   return (

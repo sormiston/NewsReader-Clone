@@ -6,26 +6,21 @@ import HelperGems from './HelperGems'
 
 const StyledArticleBullet = styled.div`
   margin: auto;
-  overflow-x: hidden;
-  
-  .flex-1a {
-    display: flex;
-    flex-flow: row-reverse nowrap;
-    justify-content: space-between;
-  }
+  overflow-wrap: break-word;
+  overflow-y: hidden;
 
   img {
     width: 140px;
     height: 100px;
-    /* background-size: cover; */
+    margin-right: 1rem;
+    background-size: cover;
   }
-@media screen and (max-width: 680px) {
-  
-}
+
 @media screen and (max-width: 504px) {
   img {
     width: 80px;
     height: 80px;
+    
   } 
 }
 
@@ -52,7 +47,7 @@ export default function ArticleTile({ contentObject, isSecondary }) {
             <div className="flex-3a">
               <div className="byline">
                 <h3>{contentObject.fields.author} in {contentObject.fields.company}</h3>
-                <span display="inline-block">{contentObject.fields.date} {'\u2022'} 5min read {'\u2605'}</span>
+                <h3>{contentObject.fields.date} {'\u2022'} 5min read {'\u2605'}</h3>
               </div>
               <HelperGems />
 

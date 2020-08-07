@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Route, Link } from 'react-router-dom'
 import axios from 'axios'
 import AboveFold from './AboveFold'
 
@@ -43,7 +42,18 @@ export default function MainFeed() {
 
   return <main>
     <nav className="level is-mobile has-text-centered"></nav>
-    <div className="level-item has-text-centered">Category Carousel</div>
+    <div class="tabs is-centered is-fullwidth">
+      <ul>
+        <li class="is-active">
+          <a>HOME</a></li>
+        <li><a>POPULAR</a></li>
+        <li><a>MOMENTUM</a></li>
+        <li><a>CORONAVIRUS</a></li>
+        <li><a>ONEZERO</a></li>
+        <li><a>ELEMENTAL</a></li>
+        <li><a>GEN</a></li>
+      </ul>
+    </div>
 
     {dataLoading ? <h1>Wait for it</h1> : <AboveFold heroArticle1={heroArticle1} heroArticle2={heroArticle2} news={news.slice(0, 3)} />}
 

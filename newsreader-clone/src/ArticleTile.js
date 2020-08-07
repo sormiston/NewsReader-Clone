@@ -12,19 +12,21 @@ export default function ArticleTile({ contentObject, isSecondary }) {
     // spot class is particular distinction berween Tile and Bullet
     <div className={`${customClassMarker}`}>
       <Link className="react-router-link" to={`/${contentObject.id}`} >
-        <div className="flex-1a">
+        <div className="flex-1a spot">
 
           <img src={contentObject.fields.imgLarge} />
           <div className="flex-2a spot">
             <h1><strong>{contentObject.fields.headline}</strong></h1>
             <div className="subtitle">
-              {contentObject.fields.subHeadline}
+              <h3>
+                {contentObject.fields.subHeadline}
+              </h3>
             </div>
 
             <div className="flex-3a spot">
               <div className="byline">
                 <h3>{contentObject.fields.author} in {contentObject.fields.company}</h3>
-                <span display="inline-block">{contentObject.fields.date} {'\u2022'} 5min read {'\u2605'}</span>
+                <h3>{contentObject.fields.date} {'\u2022'} 5min read {'\u2605'}</h3>
               </div>
               <HelperGems />
             </div>
