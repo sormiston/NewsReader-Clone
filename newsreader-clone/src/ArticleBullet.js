@@ -13,35 +13,24 @@ const StyledArticleBullet = styled.div`
     flex-flow: row-reverse nowrap;
     justify-content: space-between;
   }
-  .flex-2a {
-    display: flex;
-    flex-flow: column nowrap;
-    width: 75%;
-    justify-content: space-between;
-  }
+
   img {
-    width: 100px;
+    width: 140px;
     height: 100px;
-    background-size: cover;
+    /* background-size: cover; */
   }
-
-/* .flex-3a {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-} */
-
-@media screen and (max-width: 504px) {
-  .flex-1a {
-    height: 100px;
-  }
+@media screen and (max-width: 680px) {
   
+}
+@media screen and (max-width: 504px) {
   img {
     width: 80px;
     height: 80px;
-    background-size: auto;
   } 
 }
+
+
+
 `
 
 export default function ArticleTile({ contentObject, isSecondary }) {
@@ -57,7 +46,7 @@ export default function ArticleTile({ contentObject, isSecondary }) {
           <div className="flex-2a">
             <h1><strong>{contentObject.fields.headline}</strong></h1>
             <div className="subtitle">
-              {contentObject.fields.subHeadline}
+              <h3>{contentObject.fields.subHeadline}</h3>
             </div>
 
             <div className="flex-3a">

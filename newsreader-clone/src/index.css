@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
 *,
 ::before,
 ::after {
@@ -12,7 +14,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: 1.1;
 }
 
 /* .article-page-wrap {
@@ -30,10 +31,4 @@ i {
 .fa {
   display: inline-block;
   font-size: 1.75em;
-}
-
-@media screen and (max-width: 395px) {
-  .subtitle {
-    visibility: hidden;
-  }
 }

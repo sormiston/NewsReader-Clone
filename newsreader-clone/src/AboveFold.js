@@ -5,13 +5,16 @@ import ArticleBullet from './ArticleBullet'
 
 const StyledAboveFold = styled.section`
   display: flex;
-  flex-flow: column nowrap;
-  margin: 2rem;
+  flex-flow: row nowrap;
+  margin: .5rem;
+  font-family:  'Open Sans','arial';
   
    > div {
     padding-top: 2rem;
   }
-
+  .flex-3 {
+    margin: 0 .5rem;
+  }
   .flex-3 > div {
     padding-top: 1rem;
   }
@@ -19,8 +22,7 @@ const StyledAboveFold = styled.section`
     line-height: 1.2;
   }
   h1 {
-    font-size: 1.75rem;
-  
+    font-size: 1.25rem;
   }
   h3 {
     font-size: 1rem;
@@ -47,11 +49,17 @@ const StyledAboveFold = styled.section`
    }
   }
   
-  @media screen and (max-width: 680px) {
-    .flex-3 {
-      
-    }
+  @media screen and (max-width: 740px) {
+    flex-flow: column nowrap;
+    margin: 2rem;
   }
+    @media screen and (min-width: 741px) {
+      .subtitle > h3 {
+        visibility: hidden;
+        
+      }
+    }
+    
   
   @media screen and (max-width: 395px) {
     text-overflow: ellipsis;
