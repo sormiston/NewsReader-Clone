@@ -11,7 +11,7 @@ const StyledAboveFold = styled.section`
    > div {
     padding-top: 2rem;
   }
-  
+
   .flex-3 > div {
     padding-top: 1rem;
   }
@@ -26,9 +26,21 @@ const StyledAboveFold = styled.section`
     font-size: 1rem;
   }
   img {
-    background-size: cover;
+    background-size: auto;
   }
-  
+  .flex-2a {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 75%;
+    justify-content: space-between;
+  }
+  .flex-3a {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  justify-content: space-between;
+}
+
   @media screen and (max-width: 1030px) {
   .isSecondary {
     display: none;

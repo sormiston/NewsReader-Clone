@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
+import HelperGems from './HelperGems'
 
 
 export default function ArticleTile({ contentObject, isSecondary }) {
@@ -8,18 +9,26 @@ export default function ArticleTile({ contentObject, isSecondary }) {
   if (isSecondary) customClassMarker = customClassMarker.concat(' isSecondary')
 
   return (
+    // spot class is particular distinction berween Tile and Bullet
     <div className={`${customClassMarker}`}>
       <Link className="react-router-link" to={`/${contentObject.id}`} >
-        <figure className="image is-5by3">
+        <div className="flex-1a">
+
           <img src={contentObject.fields.imgLarge} />
-        </figure>
-        <h1><strong>{contentObject.fields.headline}</strong></h1>
-        <div className="subtitle">{contentObject.fields.subHeadline}</div>
-        <div className="media">
-          <div className="media-content">
-            <h3>{contentObject.fields.author} in {contentObject.fields.company}</h3>
-            <span display="inline-block">{contentObject.fields.date} {'\u2022'} 5min read {'\u2605'}<span className="icon"><i className="fa fa-bookmark-o" aria-hidden="true"></i></span>
-              <span className="icon"><i className="fa fa-ellipsis-h" aria-hidden="true"></i></span></span>
+          <div className="flex-2a spot">
+            <h1><strong>{contentObject.fields.headline}</strong></h1>
+            <div className="subtitle">
+              {contentObject.fields.subHeadline}
+            </div>
+
+            <div className="flex-3a spot">
+              <div className="byline">
+                <h3>{contentObject.fields.author} in {contentObject.fields.company}</h3>
+                <span display="inline-block">{contentObject.fields.date} {'\u2022'} 5min read {'\u2605'}</span>
+              </div>
+              <HelperGems />
+            </div>
+
           </div>
         </div>
       </Link>

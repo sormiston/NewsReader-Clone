@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import Helpers from './Helpers'
+import HelperGems from './HelperGems'
 
 
 const StyledArticleBullet = styled.div`
@@ -17,6 +17,7 @@ const StyledArticleBullet = styled.div`
     display: flex;
     flex-flow: column nowrap;
     width: 75%;
+    justify-content: space-between;
   }
   img {
     width: 100px;
@@ -24,11 +25,11 @@ const StyledArticleBullet = styled.div`
     background-size: cover;
   }
 
-.flex-3a {
+/* .flex-3a {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-}
+} */
 
 @media screen and (max-width: 504px) {
   .flex-1a {
@@ -64,7 +65,7 @@ export default function ArticleTile({ contentObject, isSecondary }) {
                 <h3>{contentObject.fields.author} in {contentObject.fields.company}</h3>
                 <span display="inline-block">{contentObject.fields.date} {'\u2022'} 5min read {'\u2605'}</span>
               </div>
-              <Helpers />
+              <HelperGems />
 
             </div>
 

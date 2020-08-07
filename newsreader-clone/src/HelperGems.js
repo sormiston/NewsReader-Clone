@@ -1,18 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const HelperGems = styled.span`
- span {
-  padding-right: 2.75rem;
- }
+const StyledHelperGems = styled.div`
+display: flex;
+flex-flow: row nowrap;
+flex-basis: 80px;
+justify-content: space-between;
+ 
 `
-export default function Helpers() {
+export default function HelperGems() {
 
   return (
-    <HelperGems className="helpers">
+    <StyledHelperGems className="helperGems">
       <span className="icon"><i className="fa fa-bookmark-o" aria-hidden="true"></i></span>
       <span className="icon"><i className="fa fa-ellipsis-h" aria-hidden="true"></i></span>
-    </HelperGems>
+    </StyledHelperGems>
   )
 }
 
