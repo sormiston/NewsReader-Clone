@@ -8,8 +8,10 @@ Mydiem newsreader clone
 
 Mydiem is a limited-functionality clone of the user-sourced news blog Medium - https://medium.com/.
 A large-ish database of schematized lorem ipsum data will represent articles, stats, and content.
-This project will be a self-guided study in design fidelity and architecture. The challenge is to apply React and CSS extended frameworks to create highly scalable code that directs high-volume rendering while preserving cohesive organization and style. This will also be a localized experiment of CRUD functionality with observable analogies to a real-world cases.  
+This project will be a self-guided study in design fidelity and architecture. The challenge is to apply React and CSS extended frameworks to create highly scalable code that directs high-volume rendering while preserving cohesive organization and style. This will also be a localized experiment of CRUD functionality with observable analogies to real-world cases.  
 I am hoping this practice will prepare me well for working with a UX student in P3.
+
+# Hosted on Netlify at: https://silly-goodall-b3a366.netlify.app/
 
 ## API and Data Sample
 

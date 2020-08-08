@@ -43,6 +43,7 @@ const StyledArticle = styled.main`
     font-size: 1.75rem;
   }
   div.media-right {
+    
     flex: 1 0 400px;
   }
   
