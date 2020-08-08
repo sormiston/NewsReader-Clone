@@ -11,16 +11,16 @@ text-decoration: underline;
 export default function Comment({ comment, editComment, deleteComment, thisCommentIdx }) {
   const [editing, setEditing] = useState(false)
   const [userEditedComment, setUserEditedComment] = useState(comment.comment)
-
+  const [commentIdx,] = useState(thisCommentIdx)
 
   const dropdownRef = createRef()
   const handleDropdown = () => {
+    console.log(dropdownRef)
     dropdownRef.current.classList.toggle('is-active')
   }
-
   const handleEditComment = () => {
 
-    editComment(userEditedComment, thisCommentIdx)
+    editComment(userEditedComment, commentIdx)
     setEditing(false)
   }
 
@@ -35,7 +35,7 @@ export default function Comment({ comment, editComment, deleteComment, thisComme
       <div className="dropdown-item">
         <small onClick={() => {
           alert('This will be deleted.  Some day, this will be a modal, and maybe it will even give you a choice.  But for now, no choice.')
-          deleteComment(thisCommentIdx)
+          deleteComment(commentIdx)
         }}>Delete</small>
       </div>
     </div>

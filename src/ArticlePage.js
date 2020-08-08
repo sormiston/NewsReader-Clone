@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, createRef } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
@@ -8,9 +8,14 @@ import Footer from './Footer'
 import CommentsCard from './CommentsCard'
 
 const StyledArticle = styled.main`
+ 
+    transition: all 100ms 1100ms;
+   
+  .article-body {
     max-width: 680px;
      margin: 0 auto;
-.hero {
+  }
+  .hero {
     max-height: 6vh;
   }
   .hero-body {
@@ -56,9 +61,9 @@ const StyledArticle = styled.main`
       flex: 1 1;
     }
   }
+ 
      
 `
-
 
 export default function ArticlePage() {
   const params = useParams()
@@ -67,6 +72,7 @@ export default function ArticlePage() {
   const [article, setArticle] = useState({})
   const [dataLoading, setDataLoading] = useState(true)
   const [commentOverlay, setCommentOverlay] = useState(false)
+  const scrimRef = createRef()
 
   useEffect(() => {
     const apiCall = async () => {
@@ -81,18 +87,42 @@ export default function ArticlePage() {
     }
     apiCall()
   }, [])
+
+  // const darkenScrim = useEffect(() => {
+  //   if (commentOverlay) {
+  //     scrimRef.current.style.backgroundColor = "#f2f2f2"
+  //     scrimRef.current.style.filter = "brightness(40%)"
+  //   } else {
+  //     scrimRef.current.style.backgroundColor = "unset"
+  //     scrimRef.current.style.filter = "unset"
+  //   }
+  // }, [commentOverlay])
+
   const toggleComments = () => {
     setCommentOverlay(!commentOverlay)
+    if (!commentOverlay) {
+      scrimRef.current.style.backgroundColor = "#f2f2f2"
+      scrimRef.current.style.filter = "brightness(40%)"
+    } else {
+      scrimRef.current.style.backgroundColor = "unset"
+      scrimRef.current.style.filter = "unset"
+    }
   }
+
   return (
     <>
-      <StyledArticle>
-        <Header article={article} />
-        <Body />
-        <Footer article={article} toggleComments={toggleComments} />
+      <StyledArticle ref={scrimRef}>
+        <div className="article-body">
+
+          <Header article={article} />
+          <Body />
+          <Footer article={article} toggleComments={toggleComments} />
+
+        </div>
       </StyledArticle>
       {!dataLoading && <CommentsCard contentObject={article} toggleComments={() => toggleComments()} commentOverlay={commentOverlay} />}
     </>
+
   )
 }
 

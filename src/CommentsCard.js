@@ -5,18 +5,17 @@ import styled from 'styled-components'
 import CommentInput from './CommentInput'
 import Comment from './Comment'
 
-const StyledCommentsCard = styled.main`
+const StyledCommentsCard = styled.main` 
   
     position: fixed;
     width: 100%;
     border-top: 2px solid grey;
-    box-shadow: 0px -15vh 15vh 15vh;
+   
     border-radius: 5%;
     background-color: white;
-    transition: height 1s ease-in-out;
+    transition: all 1s ease-in;
     z-index: 1;
     bottom: 1vh;
-    
     overflow-y: scroll;
    
   .box {
@@ -48,6 +47,7 @@ const StyledCommentsCard = styled.main`
    padding: .6rem .8rem;
   }
   `
+
 export default function CommentsCard({ contentObject, toggleComments, commentOverlay }) {
   const params = useParams()
   const id = params.id
@@ -58,7 +58,6 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
   const commentsCardRef = createRef()
 
   useEffect(() => {
-
     if (commentOverlay) {
       commentsCardRef.current.style.height = '85vh'
       commentsCardRef.current.style.opacity = '1'
@@ -108,6 +107,7 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
 
   const editComment = (update, idx) => {
     setDataLoading(true)
+    console.log(`Edit Comment func ${idx}`)
     parsedComments[idx].comment = update
     const patch = JSON.stringify(parsedComments)
     patchCall(patch)
@@ -118,6 +118,7 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
 
   const deleteComment = (idx) => {
     setDataLoading(true)
+    console.log(`Delete Comment func ${idx}`)
     parsedComments.splice(idx, 1)
     const patch = JSON.stringify(parsedComments)
     patchCall(patch)
