@@ -52,7 +52,7 @@ The functionality will then be divided into two separate lists: MVP and PostMVP.
 | Aug 4 | Finish/troubleshoot main feed rendering / Show Article Page w/ Comment section                     | Complete   |
 | Aug 5 | Finish/troubleshoot CRUD functionality of Comment section / style comment section and article page | Complete   |
 | Aug 6 | Style main feed rendering                                                                          | Complete   |
-| Aug 7 | Present                                                                                            | Incomplete |
+| Aug 7 | Present                                                                                            | Complete |
 
 ## Priority Matrix
 
@@ -119,7 +119,12 @@ const editCommentElement = (
           </div>
 ```
 
-And, this one in a Styled Component for resposive layout for the Article Footer...
+
+The above snippet lays out two alternative React Elements in JSX, assigning each to a variable for easy portability. This portability
+allows for conditional rendering in the context of the component's return block, allowing us to swap out large-ish code structures with
+a single line of ternary logic.
+
+For CSS, there's this Styled Component for resposive layout in Article Footer...
 
 ```
 }
@@ -140,9 +145,7 @@ And, this one in a Styled Component for resposive layout for the Article Footer.
 
 ... clearly evidence of someone who knows what they're doing.
 
-The above snippet lays out two alternative React Elements in JSX, assigning each to a variable for easy portability. This portability
-allows for conditional rendering in the context of the component's return block, allowing us to swap out large-ish code structures with
-a single line of ternary logic.
+
 
 ## Issues
 
