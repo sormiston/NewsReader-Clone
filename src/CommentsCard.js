@@ -10,13 +10,13 @@ const StyledCommentsCard = styled.main`
     position: fixed;
     width: 100%;
     border-top: 2px solid grey;
-   
-    border-radius: 5%;
+    border-radius: 8px 8px 0 0;
     background-color: white;
-    transition: all 1s ease-in;
-    z-index: 1;
+    transition: height .35s cubic-bezier(0.55, 0.055, 0.675, 0.19), width .35s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+    z-index: 0;
     bottom: 1vh;
     overflow-y: scroll;
+    box-shadow: 0 -4px 20px grey;
    
   .box {
     padding: .8rem;
@@ -27,6 +27,19 @@ const StyledCommentsCard = styled.main`
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
+  }
+  .fixed-head {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    z-index: 1;
+    background-color: white;
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .comments-section {
+    padding-top: 300px;
   }
   .user-head {
     display: flex;
@@ -131,11 +144,15 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
 
     <StyledCommentsCard ref={commentsCardRef}>
       <div className="container">
-        <h2 className="title is-3 mt-6 ml-5 response-head">
-          Responses ({parsedComments.length})
-          <button className="delete mr-5" onClick={toggleComments}></button></h2>
-        <CommentInput addComment={addComment} />
-        {!dataLoading && parsedComments.map((comment, idx) => <Comment comment={comment} editComment={editComment} deleteComment={deleteComment} thisCommentIdx={idx} key={`${id}${idx}`} />)}
+        <div className="fixed-head">
+          <h2 className="title is-3 mt-6 ml-5 response-head">
+            Responses ({parsedComments.length})
+            <button className="delete mr-5" onClick={toggleComments}></button></h2>
+          <CommentInput addComment={addComment} />
+        </div>
+        <div className="comments-section">
+          {!dataLoading && parsedComments.map((comment, idx) => <Comment comment={comment} editComment={editComment} deleteComment={deleteComment} thisCommentIdx={idx} key={`${id}${idx}`} />)}
+        </div>
       </div>
     </StyledCommentsCard>
   )

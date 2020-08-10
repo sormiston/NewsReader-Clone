@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react'
+
 
 
 export default function CommentInput({ addComment }) {
   const [expandTextArea, setExpandTextArea] = useState(false)
-  const [userName, setUsername] = useState(localStorage.getItem('name'))
-  const [userProfile, setUserProfile] = useState(localStorage.getItem('profile'))
+  const [userName,] = useState(localStorage.getItem('name'))
+  const [userProfile,] = useState(localStorage.getItem('profile'))
   const [userComment, setUserComment] = useState('')
 
   const handleAddComment = (e) => {
@@ -15,7 +15,7 @@ export default function CommentInput({ addComment }) {
 
   }
   return (
-    <div className="box">
+    <div className="box comment-input">
       <div className="user-head">
         <span display="inline-block">
           <figure className="media-left image is-32x32">

@@ -8,8 +8,6 @@ import Footer from './Footer'
 import CommentsCard from './CommentsCard'
 
 const StyledArticle = styled.main`
- 
-    transition: all 100ms 1100ms;
    
   .article-body {
     max-width: 680px;
@@ -60,9 +58,7 @@ const StyledArticle = styled.main`
     div.media-right {
       flex: 1 1;
     }
-  }
- 
-     
+  }    
 `
 
 export default function ArticlePage() {
@@ -101,8 +97,8 @@ export default function ArticlePage() {
   const toggleComments = () => {
     setCommentOverlay(!commentOverlay)
     if (!commentOverlay) {
-      scrimRef.current.style.backgroundColor = "#f2f2f2"
-      scrimRef.current.style.filter = "brightness(40%)"
+      scrimRef.current.style.backgroundColor = "#fefefe"
+      scrimRef.current.style.filter = "brightness(90%)"
     } else {
       scrimRef.current.style.backgroundColor = "unset"
       scrimRef.current.style.filter = "unset"
