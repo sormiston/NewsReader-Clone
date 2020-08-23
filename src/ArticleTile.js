@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import HelperGems from './HelperGems'
 
@@ -9,7 +8,7 @@ export default function ArticleTile({ contentObject, isSecondary }) {
   if (isSecondary) customClassMarker = customClassMarker.concat(' isSecondary')
 
   return (
-    // spot class is particular distinction berween Tile and Bullet
+    // spot class is particular distinction between Tile and Bullet
     <div className={`${customClassMarker}`}>
       <Link className="react-router-link" to={`/${contentObject.id}`} >
         <div className="flex-1a spot">

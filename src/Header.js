@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 
 // STYLED COMPONENTS
-const StyledHeader = styled.header`
-  
-  
+const StyledHeader = styled.header` 
   `
 
 export default function Header({ article }) {

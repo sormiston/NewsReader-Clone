@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 
-
 export default function CommentInput({ addComment }) {
   const [expandTextArea, setExpandTextArea] = useState(false)
   const [userName,] = useState(localStorage.getItem('name'))
