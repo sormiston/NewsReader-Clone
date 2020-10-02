@@ -84,7 +84,7 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
   const patchCall = async (patch) => {
     const res = await axios.patch(`${REACT_APP_BASE_URL}Content/${id}`, {
       fields: {
-        comments: patch,
+        comments: patch
       }
     }, {
       headers: {
@@ -102,7 +102,7 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
     setParsedComments(JSON.parse(res.data.fields.comments))
   }
 
-  const addComment = (string) => {
+  const addComment = async (string) => {
     setDataLoading(true)
     const newComment = {
       name: localStorage.getItem('name'),
@@ -110,9 +110,17 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
       comment: string,
       claps: 0,
     }
-    parsedComments.unshift(newComment) // dangerous to modify state variable directly via side effect, here ?
-    const patch = JSON.stringify(parsedComments)
-    patchCall(patch)
+    console.log(newComment)
+    console.log(typeof newComment)
+    console.log(parsedComments) 
+    console.log(typeof parsedComments)
+    const reqData = [newComment, ...parsedComments]
+    console.log(reqData);
+    // Cannot update merge new comment into parsedComments and then use state in axios call, due to async
+    // timing issues?
+    
+    const patch = JSON.stringify(reqData)
+    await patchCall(patch)
     getCall()
     setDidPostComment(didPostComment + 1)
     setDataLoading(false)
@@ -151,7 +159,7 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
           <CommentInput addComment={addComment} />
         </div>
         <div className="comments-section">
-          {!dataLoading && parsedComments.map((comment, idx) => <Comment comment={comment} editComment={editComment} deleteComment={deleteComment} thisCommentIdx={idx} key={`${id}${idx}`} />)}
+          {!dataLoading && parsedComments.length > 0 && parsedComments.map((comment, idx) => <Comment comment={comment} editComment={editComment} deleteComment={deleteComment} thisCommentIdx={idx} key={`${id}${idx}`} />)}
         </div>
       </div>
     </StyledCommentsCard>
