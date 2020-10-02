@@ -116,15 +116,7 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
       comment: string,
       claps: 0,
     }
-    console.log(newComment)
-    console.log(typeof newComment)
-    console.log(parsedComments) 
-    console.log(typeof parsedComments)
     const reqData = [newComment, ...parsedComments]
-    console.log(reqData);
-    // Cannot update merge new comment into parsedComments and then use state in axios call, due to async
-    // timing issues?
-    
     const patch = JSON.stringify(reqData)
     await patchCall(patch)
     getCall()
