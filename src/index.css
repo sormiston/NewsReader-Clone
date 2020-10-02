@@ -55,3 +55,7 @@ a.root {
   position: relative;
   top: 12px;
 }
+
+.fFutOK {
+  z-index: 1 !important;
+}

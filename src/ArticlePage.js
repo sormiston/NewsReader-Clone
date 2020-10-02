@@ -116,7 +116,7 @@ export default function ArticlePage() {
 
         </div>
       </StyledArticle>
-      {!dataLoading && <CommentsCard contentObject={article} toggleComments={() => toggleComments()} commentOverlay={commentOverlay} />}
+      {!dataLoading && <CommentsCard contentObject={article} toggleComments={toggleComments} commentOverlay={commentOverlay} />}
     </>
 
   )

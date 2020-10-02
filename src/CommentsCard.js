@@ -4,6 +4,7 @@ import axios from 'axios'
 import styled from 'styled-components'
 import CommentInput from './CommentInput'
 import Comment from './Comment'
+import { mediaQueries } from './StyledMixins'
 
 const StyledCommentsCard = styled.main` 
   
@@ -17,6 +18,11 @@ const StyledCommentsCard = styled.main`
     bottom: 1vh;
     overflow-y: scroll;
     box-shadow: 0 -4px 20px grey;
+    
+    ${mediaQueries('tablet')`
+      width: 50%;
+      
+    `};
    
   .box {
     padding: .8rem;
@@ -32,7 +38,7 @@ const StyledCommentsCard = styled.main`
     position: fixed;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: inherit;
     z-index: 1;
     background-color: white;
     border-radius: 8px 8px 0 0;
@@ -151,7 +157,7 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
   return (
 
     <StyledCommentsCard ref={commentsCardRef}>
-      <div className="container">
+      
         <div className="fixed-head">
           <h2 className="title is-3 mt-6 ml-5 response-head">
             Responses ({parsedComments.length})
@@ -161,7 +167,7 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
         <div className="comments-section">
           {!dataLoading && parsedComments.length > 0 && parsedComments.map((comment, idx) => <Comment comment={comment} editComment={editComment} deleteComment={deleteComment} thisCommentIdx={idx} key={`${id}${idx}`} />)}
         </div>
-      </div>
+      
     </StyledCommentsCard>
   )
 }
