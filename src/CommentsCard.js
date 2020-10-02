@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
@@ -7,23 +7,55 @@ import Comment from './Comment'
 import { mediaQueries } from './StyledMixins'
 
 const StyledCommentsCard = styled.main` 
+  position: fixed;
+  visibility: hidden;
+  width: 100%;
+  z-index: 2;
+  height: 100vh;
   
-    position: fixed;
+  &.show {
+    visibility: visible;
+    
+    &:after {
+      z-index: 0;
+      position: fixed;
+      content: '';
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(226, 226, 226, 0.5);
+    }
+  }
+  
+  .commentCard-content {
+    position: absolute;
     width: 100%;
+    height: 100vh;
     border-top: 2px solid grey;
     border-radius: 8px 8px 0 0;
     background-color: white;
-    transition: height .35s cubic-bezier(0.55, 0.055, 0.675, 0.19), width .35s cubic-bezier(0.55, 0.055, 0.675, 0.19);
-    z-index: 0;
-    bottom: 1vh;
+    /* transition: height .35s cubic-bezier(0.55, 0.055, 0.675, 0.19), width .35s cubic-bezier(0.55, 0.055, 0.675, 0.19); */
+    z-index: 2;
     overflow-y: scroll;
-    box-shadow: 0 -4px 20px grey;
+    /* transform: translate3d(0, -100%, 0); */
+    
+    
+    &.show {
+      transform: translate3d()
+    }
+    
+ 
     
     ${mediaQueries('tablet')`
-      width: 50%;
+      width: 40%;
+      right: 0;
+      height: 100vh;
+      
       
     `};
    
+ 
   .box {
     padding: .8rem;
     margin: .2rem;
@@ -65,6 +97,7 @@ const StyledCommentsCard = styled.main`
     display: inline-block;
    padding: .6rem .8rem;
   }
+}
   `
 
 export default function CommentsCard({ contentObject, toggleComments, commentOverlay }) {
@@ -74,16 +107,13 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
   const [dataLoading, setDataLoading] = useState(false)
   const [parsedComments, setParsedComments] = useState(JSON.parse(contentObject.comments))
   const [didPostComment, setDidPostComment] = useState(0)
-  const commentsCardRef = createRef()
+ 
 
+  // THEORY: useEffect is necessary here because component must be allowed to render in its first state (eg closed) and THEN transition to its second state.  In other words, React's re-rendering on component change creates a break between states.
+  
+  
   useEffect(() => {
-    if (commentOverlay) {
-      commentsCardRef.current.style.height = '85vh'
-      commentsCardRef.current.style.opacity = '1'
-    } else {
-      commentsCardRef.current.style.height = '1vh'
-      commentsCardRef.current.style.opacity = 0
-    }
+   
   }, [commentOverlay])
 
 
@@ -146,18 +176,21 @@ export default function CommentsCard({ contentObject, toggleComments, commentOve
     setDataLoading(false)
   }
 
+  
   return (
 
-    <StyledCommentsCard ref={commentsCardRef}>
+    <StyledCommentsCard>
       
-        <div className="fixed-head">
-          <h2 className="title is-3 mt-6 ml-5 response-head">
-            Responses ({parsedComments.length})
-            <button className="delete mr-5" onClick={toggleComments}></button></h2>
-          <CommentInput addComment={addComment} />
-        </div>
-        <div className="comments-section">
-          {!dataLoading && parsedComments.length > 0 && parsedComments.map((comment, idx) => <Comment comment={comment} editComment={editComment} deleteComment={deleteComment} thisCommentIdx={idx} key={`${id}${idx}`} />)}
+        <div className="commentCard-content">
+          <div className="fixed-head">
+            <h2 className="title is-3 mt-6 ml-5 response-head">
+              Responses ({parsedComments.length})
+              <button className="delete mr-5" onClick={toggleComments}></button></h2>
+            <CommentInput addComment={addComment} />
+          </div>
+          <div className="comments-section">
+            {!dataLoading && parsedComments.length > 0 && parsedComments.map((comment, idx) => <Comment comment={comment} editComment={editComment} deleteComment={deleteComment} thisCommentIdx={idx} key={`${id}${idx}`} />)}
+          </div>
         </div>
       
     </StyledCommentsCard>

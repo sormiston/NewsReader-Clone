@@ -15,7 +15,6 @@ export default function Comment({ comment, editComment, deleteComment, thisComme
 
   const dropdownRef = createRef()
   const handleDropdown = () => {
-    console.log(dropdownRef)
     dropdownRef.current.classList.toggle('is-active')
   }
   const handleEditComment = () => {

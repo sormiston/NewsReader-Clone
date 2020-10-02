@@ -6,6 +6,7 @@ import Header from './Header'
 import Body from './Body'
 import Footer from './Footer'
 import CommentsCard from './CommentsCard'
+import Nav from './Layout'
 
 const StyledArticle = styled.main`
   .article-body {
@@ -25,7 +26,7 @@ const StyledArticle = styled.main`
   figcaption {
     text-align: center;
   }
- 
+
   .content {
     padding-bottom: 2rem;
   }
@@ -68,8 +69,8 @@ export default function ArticlePage() {
   } = process.env
   const [article, setArticle] = useState({})
   const [dataLoading, setDataLoading] = useState(true)
-  const [commentOverlay, setCommentOverlay] = useState(false)
-  const scrimRef = createRef()
+ 
+  const commentsCardElt = createRef()
 
   useEffect(() => {
     const apiCall = async () => {
@@ -85,33 +86,33 @@ export default function ArticlePage() {
     apiCall()
   }, [])
 
+  // we want to avoid state-based component re-rendering.
+  // modify the below to toggle class on an appropriate DOM reference without involving state
   const toggleComments = () => {
-    setCommentOverlay(!commentOverlay)
-    if (!commentOverlay) {
-      scrimRef.current.style.backgroundColor = '#fefefe'
-      scrimRef.current.style.filter = 'brightness(90%)'
-    } else {
-      scrimRef.current.style.backgroundColor = 'unset'
-      scrimRef.current.style.filter = 'unset'
-    }
+    console.log(commentsCardElt.current.style.pageXOffset)
   }
 
   return (
     <>
-      <StyledArticle ref={scrimRef}>
-        <div className='article-body'>
-          <Header article={article} />
-          <Body />
-          <Footer article={article} toggleComments={toggleComments} />
-        </div>
-      </StyledArticle>
       {!dataLoading && (
         <CommentsCard
           contentObject={article}
           toggleComments={toggleComments}
-          commentOverlay={commentOverlay}
+          ref={commentsCardElt}
         />
       )}
+      <Nav>
+        <StyledArticle>
+          <div className='article-body'>
+            <Header article={article} />
+            <Body />
+            <Footer
+              article={article}
+              toggleComments={toggleComments}
+            />
+          </div>
+        </StyledArticle>
+      </Nav>
     </>
   )
 }
