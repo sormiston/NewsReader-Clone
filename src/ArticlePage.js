@@ -6,77 +6,79 @@ import Header from './Header'
 import Body from './Body'
 import Footer from './Footer'
 import CommentsCard from './CommentsCard'
+import Nav from './Layout'
 
 const StyledArticle = styled.main`
-   
   .article-body {
     max-width: 680px;
-     margin: 0 auto;
+    margin: 0 auto;
   }
   .hero {
     max-height: 6vh;
   }
   .hero-body {
-    padding: .5rem;
+    padding: 0.5rem;
     text-align: left;
-  } .title-2 {
+  }
+  .title-2 {
     font-weight: 800;
   }
   figcaption {
     text-align: center;
   }
- .subtitle.supertitle-actually {
-   
- }
+
   .content {
     padding-bottom: 2rem;
   }
-  
+
   div.tags.are-medium {
     justify-content: center;
     padding-bottom: 2rem;
-  } 
+  }
   .icon-bank {
     display: flex;
     justify-content: space-evenly;
     width: 140px;
-    margin-bottom: .75rem;
+    margin-bottom: 0.75rem;
   }
   i {
     font-size: 1.75rem;
   }
   div.media-right {
-    
     flex: 1 0 400px;
   }
-  
+
   @media screen and (max-width: 700px) {
-    div.media.media-left, div.media-content.content {
-    flex: 0 0 100%;  
+    div.media.media-left,
+    div.media-content.content {
+      flex: 0 0 100%;
     }
-    
+
     div.media-right {
       flex: 1 1;
     }
-  }    
+  }
 `
 
 export default function ArticlePage() {
   const params = useParams()
   const id = params.id
-  const { REACT_APP_BASE_URL, REACT_APP_AIRTABLE_API_KEY } = process.env
+  const {
+    REACT_APP_BASE_URL,
+    REACT_APP_AIRTABLE_API_KEY,
+  } = process.env
   const [article, setArticle] = useState({})
   const [dataLoading, setDataLoading] = useState(true)
-  const [commentOverlay, setCommentOverlay] = useState(false)
-  const scrimRef = createRef()
+ 
+  const commentsCardElt = createRef()
 
   useEffect(() => {
     const apiCall = async () => {
       setDataLoading(true)
       const res = await axios(`${REACT_APP_BASE_URL}Content/${id}`, {
         headers: {
-          Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`
-        }
+          Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`,
+        },
       })
       setArticle(res.data.fields)
       setDataLoading(false)
@@ -84,41 +86,33 @@ export default function ArticlePage() {
     apiCall()
   }, [])
 
-  // const darkenScrim = useEffect(() => {
-  //   if (commentOverlay) {
-  //     scrimRef.current.style.backgroundColor = "#f2f2f2"
-  //     scrimRef.current.style.filter = "brightness(40%)"
-  //   } else {
-  //     scrimRef.current.style.backgroundColor = "unset"
-  //     scrimRef.current.style.filter = "unset"
-  //   }
-  // }, [commentOverlay])
-
+  // we want to avoid state-based component re-rendering.
+  // modify the below to toggle class on an appropriate DOM reference without involving state
   const toggleComments = () => {
-    setCommentOverlay(!commentOverlay)
-    if (!commentOverlay) {
-      scrimRef.current.style.backgroundColor = "#fefefe"
-      scrimRef.current.style.filter = "brightness(90%)"
-    } else {
-      scrimRef.current.style.backgroundColor = "unset"
-      scrimRef.current.style.filter = "unset"
-    }
+    commentsCardElt.current.classList.toggle('show')
   }
 
   return (
     <>
-      <StyledArticle ref={scrimRef}>
-        <div className="article-body">
-
-          <Header article={article} />
-          <Body />
-          <Footer article={article} toggleComments={toggleComments} />
-
-        </div>
-      </StyledArticle>
-      {!dataLoading && <CommentsCard contentObject={article} toggleComments={() => toggleComments()} commentOverlay={commentOverlay} />}
+      {!dataLoading && (
+        <CommentsCard
+          contentObject={article}
+          toggleComments={toggleComments}
+          ref={commentsCardElt}
+        />
+      )}
+      <Nav>
+        <StyledArticle>
+          <div className='article-body'>
+            <Header article={article} />
+            <Body />
+            <Footer
+              article={article}
+              toggleComments={toggleComments}
+            />
+          </div>
+        </StyledArticle>
+      </Nav>
     </>
-
   )
 }
-

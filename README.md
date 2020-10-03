@@ -84,9 +84,9 @@ https://drive.google.com/file/d/13vkJLtizEeqSsIAcCjDxJsY6QJcES9Zw/view?usp=shari
 Strengths: I already have some practice/experience generating HTML content through iterators, and organizing "high volume" elements from a high level
 I have a very keen eye and focus when driven to reproduce things in detail.
 
-Weaknesses: I tend to run behind my own schedule, consistently, and expend energy fretting about it.
+Weaknesses: Estimating time expenditure in this new environemtn (React) will be very hit or miss.  Styling in React is very much an open question.
 
-Opportunities: Excellent chance to demonstrate my capability for abstraction and scalability. Excellent opportunity to go "scavenger hunting" through Bulma's UI components to build quickly with professional style.
+Opportunities: Excellent chance to demonstrate my capability for abstraction and scalability. Excellent opportunity to practice attention to detail, component-by-component.  Using Bulma for templating will be my first CSS framework, so it's good to have such focused end-product goals to work towards.  By overriding an established framework (where necessary) I'll both become aware of what Bulma can do and what it cannot (or can only do with opinions).
 
 Threats: No telling what kind of distractions/difficulties may lay in implementing Bulma - will be very documentation dependant.
 The challenges of the comment section are substantial.
@@ -121,7 +121,7 @@ const editCommentElement = (
 
 
 The above snippet lays out two alternative React Elements in JSX, assigning each to a variable for easy portability. This portability
-allows for conditional rendering in the context of the component's return block, allowing us to swap out large-ish code structures with
+allows for conditional rendering in the context of the component's return block, allowing us to swap out large-ish elements with
 a single line of ternary logic.
 
 For CSS, there's this Styled Component for resposive layout in Article Footer...
@@ -152,6 +152,15 @@ For CSS, there's this Styled Component for resposive layout in Article Footer...
 08-07-2020
 
 - That box-shadow on the CommentsCard on scroll-in is hideous. Please figure out a way to darken the article itself on CommentOverlay action.
+
+10-01-2020
+
+- Comments section comes from side to occupy approx. 40% at desktop widths
+- Repair comment section ellipsis dropdown menus -- prev should close when current opens
+- Submit and cancel buttons should be hidden on textarea "what are your thoughts?" until focus
+- Details of border radius corners, check responsive widths (close button disappearing)
+- add the signature Medium left fixed side bar comment/clap/follow fade-in
+- Verify auto-redeploys at Netlify
 
 ## Change Log
 
