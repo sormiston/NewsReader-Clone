@@ -12,21 +12,10 @@ const StyledCommentsCard = styled.main`
   width: 100%;
   z-index: 2;
   height: 100vh;
-
-  &.show {
-    visibility: visible;
-
-    &:after {
-      z-index: 0;
-      position: fixed;
-      content: '';
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(226, 226, 226, 0.5);
-    }
-  }
+  right: 0;
+  ${mediaQueries('tablet')`
+    width: 40%;
+  `}
 
   .commentCard-content {
     position: absolute;
@@ -35,22 +24,14 @@ const StyledCommentsCard = styled.main`
     border-top: 2px solid grey;
     border-radius: 8px 8px 0 0;
     background-color: white;
-    /* transition: height .35s cubic-bezier(0.55, 0.055, 0.675, 0.19), width .35s cubic-bezier(0.55, 0.055, 0.675, 0.19); */
     z-index: 2;
     overflow-y: scroll;
-    /* transform: translate3d(0, -100%, 0); */
-
-    &.show {
-      transform: translate3d();
-    }
+    transform: translate3d(0, 100%, 0);
+    transition: transform 1s ease-out, visibility 1.1s;
 
     ${mediaQueries('tablet')`
-      width: 40%;
-      right: 0;
-      height: 100vh;
-      
-      
-    `};
+      transform: translate3d(100%, 0, 0);
+      `}
 
     .box {
       padding: 0.8rem;
@@ -91,6 +72,27 @@ const StyledCommentsCard = styled.main`
     footer > span {
       display: inline-block;
       padding: 0.6rem 0.8rem;
+    }
+  }
+
+  &.show {
+    visibility: visible;
+
+    .commentCard-content {
+      transform: translate3d(0, 0, 0);
+      transition: transform 1s ease-out;
+    }
+
+    &:after {
+      z-index: 0;
+      position: fixed;
+      content: '';
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(226, 226, 226, 0.1);
+      filter: brightness(10%);
     }
   }
 `
@@ -183,13 +185,13 @@ const CommentsCard = forwardRef(
       <StyledCommentsCard ref={ref}>
         <div className='commentCard-content'>
           <div className='fixed-head'>
-            <h2 className='title is-3 mt-6 ml-5 response-head'>
+            <p className='title is-3 mt-6 ml-5 response-head'>
               Responses ({parsedComments.length})
               <button
                 className='delete mr-5'
                 onClick={toggleComments}
               ></button>
-            </h2>
+            </p>
             <CommentInput addComment={addComment} />
           </div>
           <div className='comments-section'>
