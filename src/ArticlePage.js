@@ -89,7 +89,7 @@ export default function ArticlePage() {
   // we want to avoid state-based component re-rendering.
   // modify the below to toggle class on an appropriate DOM reference without involving state
   const toggleComments = () => {
-    console.log(commentsCardElt.current.style.pageXOffset)
+    commentsCardElt.current.classList.toggle('show')
   }
 
   return (
