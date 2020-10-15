@@ -1,3 +1,5 @@
+// exportable media queries to globalize styled components
+
 export const breakpoints = {
   tablet: 732,
   desktop: 1100
