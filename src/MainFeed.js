@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import AboveFold from './AboveFold'
-
-
+import Nav from './Layout'
 
 export default function MainFeed() {
   const { REACT_APP_BASE_URL, REACT_APP_AIRTABLE_API_KEY } = process.env
@@ -16,10 +15,9 @@ export default function MainFeed() {
       setDataLoading(true)
       const res = await axios(`${REACT_APP_BASE_URL}Content/?view=Grid%20view`, {
         headers: {
-          Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`
-        }
+          Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`,
+        },
       })
-
 
       const randomize = (array) => {
         const result = []
@@ -38,25 +36,46 @@ export default function MainFeed() {
     apiCall()
   }, [])
 
-
-
-  return <main>
-    <nav className="level is-mobile has-text-centered"></nav>
-    <div class="tabs is-centered is-fullwidth">
-      <ul>
-        <li class="is-active">
-          <a>HOME</a></li>
-        <li><a>POPULAR</a></li>
-        <li><a>MOMENTUM</a></li>
-        <li><a>CORONAVIRUS</a></li>
-        <li><a>ONEZERO</a></li>
-        <li><a>ELEMENTAL</a></li>
-        <li><a>GEN</a></li>
-      </ul>
-    </div>
-
-    {dataLoading ? <h1>Wait for it</h1> : <AboveFold heroArticle1={heroArticle1} heroArticle2={heroArticle2} news={news.slice(0, 3)} />}
-
-  </main>
-
+  return (
+    <Nav>
+      <main>
+        <nav className='level is-mobile has-text-centered'></nav>
+        <div class='tabs is-centered is-fullwidth'>
+          <ul>
+            <li class='is-active'>
+              <a>HOME</a>
+            </li>
+            <li>
+              <a>POPULAR</a>
+            </li>
+            <li>
+              <a>MOMENTUM</a>
+            </li>
+            <li>
+              <a>CORONAVIRUS</a>
+            </li>
+            <li>
+              <a>ONEZERO</a>
+            </li>
+            <li>
+              <a>ELEMENTAL</a>
+            </li>
+            <li>
+              <a>GEN</a>
+            </li>
+          </ul>
+        </div>
+  
+        {dataLoading ? (
+          <h1>Wait for it</h1>
+        ) : (
+          <AboveFold
+            heroArticle1={heroArticle1}
+            heroArticle2={heroArticle2}
+            news={news.slice(0, 3)}
+          />
+        )}
+      </main>
+    </Nav>
+  )
 }
