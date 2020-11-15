@@ -9,6 +9,6 @@
   desktopL: 1440
 }
 
-export const mediaQueries = key => {
+export const mq = key => {
   return style => `@media (min-width: ${breakpoints[key]}px) { ${style} }`
 }

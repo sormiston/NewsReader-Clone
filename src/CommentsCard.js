@@ -4,7 +4,7 @@ import axios from 'axios'
 import styled from 'styled-components'
 import CommentInput from './CommentInput'
 import Comment from './Comment'
-import { mediaQueries } from './StyledMixins'
+import { mq } from './StyledMixins'
 
 const StyledCommentsCard = styled.main`
   position: fixed;
@@ -13,7 +13,7 @@ const StyledCommentsCard = styled.main`
   z-index: 2;
   height: 100vh;
   right: 0;
-  ${mediaQueries('tablet')`
+  ${mq('tablet')`
     width: 40%;
   `}
 
@@ -29,7 +29,7 @@ const StyledCommentsCard = styled.main`
     transform: translate3d(0, 100%, 0);
     transition: transform 1s ease-out, visibility 1.1s;
 
-    ${mediaQueries('tablet')`
+    ${mq('tablet')`
       transform: translate3d(100%, 0, 0);
       `}
 

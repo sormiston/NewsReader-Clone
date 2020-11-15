@@ -1,13 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import { mediaQueries } from './StyledMixins';
+import { mq } from './StyledMixins';
 
 const StyledFooter = styled.div`
   footer {
     display: flex;
     justify-content: space-around;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   }
-
+  & .left {
+    padding: 2rem;
+    flex: 1 0 50%;
+    ${mq()}
+  }
   & > * {
     margin-top: 3.5rem;
   }
@@ -17,12 +22,21 @@ const StyledFooter = styled.div`
 
   & .right {
     display: none;
-    ${mediaQueries('tablet')`
+    ${mq('tablet')`
       display: block;
-      max-width: 50%;
+      flex: 0 1 50%;
+      border: 2px solid gold;
+      border-radius: 1em;
+      padding: 2rem 3rem;
       & li {
         text-align: left;
       }
+      `}
+    ${mq('desktopL')`
+      padding: 2rem 4rem;
+      max-width: 40vw;
+      margin: 0 5rem;
+      border-width: 1px;
       `}
   }
 `;
@@ -31,7 +45,7 @@ export default function Footer() {
   return (
     <StyledFooter>
       <footer className='footer'>
-        <div className='content has-text-centered'>
+        <div className='content has-text-centered left'>
           <h6>Made with &#10084;&#65039; by Sean Ormiston</h6>
           <p>This is my first SPA made with React!</p>
           <div className='icons'>
