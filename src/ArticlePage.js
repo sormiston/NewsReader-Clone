@@ -2,9 +2,9 @@ import React, { useState, useEffect, createRef } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
-import Header from './Header'
+import Header from './ArticleHeader'
 import Body from './Body'
-import Footer from './Footer'
+import ArticleFooter from './ArticleFooter'
 import CommentsCard from './CommentsCard'
 import Nav from './Layout'
 
@@ -87,7 +87,7 @@ export default function ArticlePage() {
   }, [])
 
   // we want to avoid state-based component re-rendering.
-  // modify the below to toggle class on an appropriate DOM reference without involving state
+  // modify the below to toggle class on an appropriate DOM reference without involving state - OK
   const toggleComments = () => {
     commentsCardElt.current.classList.toggle('show')
   }
@@ -106,7 +106,7 @@ export default function ArticlePage() {
           <div className='article-body'>
             <Header article={article} />
             <Body />
-            <Footer
+            <ArticleFooter
               article={article}
               toggleComments={toggleComments}
             />

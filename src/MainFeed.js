@@ -1,40 +1,40 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
-import AboveFold from './AboveFold'
-import Nav from './Layout'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import AboveFold from './AboveFold';
+import Nav from './Layout';
 
 export default function MainFeed() {
-  const { REACT_APP_BASE_URL, REACT_APP_AIRTABLE_API_KEY } = process.env
-  const [news, setNews] = useState([])
-  const [heroArticle1, setHeroArticle1] = useState({})
-  const [heroArticle2, setHeroArticle2] = useState({})
-  const [dataLoading, setDataLoading] = useState(true)
+  const { REACT_APP_BASE_URL, REACT_APP_AIRTABLE_API_KEY } = process.env;
+  const [news, setNews] = useState([]);
+  const [heroArticle1, setHeroArticle1] = useState({});
+  const [heroArticle2, setHeroArticle2] = useState({});
+  const [dataLoading, setDataLoading] = useState(true);
 
   useEffect(() => {
     const apiCall = async () => {
-      setDataLoading(true)
+      setDataLoading(true);
       const res = await axios(`${REACT_APP_BASE_URL}Content/?view=Grid%20view`, {
         headers: {
           Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`,
         },
-      })
+      });
 
       const randomize = (array) => {
-        const result = []
+        const result = [];
         while (array.length > 0) {
-          const randomIndex = Math.floor(Math.random() * array.length)
-          result.push(...array.splice(randomIndex, 1)) // still not 100% HOW spread operator works, but thankful that it breaks unecessary nesting
+          const randomIndex = Math.floor(Math.random() * array.length);
+          result.push(...array.splice(randomIndex, 1));
         }
-        return result
-      }
-      const randomizedNews = randomize(res.data.records)
-      setHeroArticle1(randomizedNews.shift())
-      setHeroArticle2(randomizedNews.shift())
-      setNews(randomizedNews)
-      setDataLoading(false)
-    }
-    apiCall()
-  }, [])
+        return result;
+      };
+      const randomizedNews = randomize(res.data.records);
+      setHeroArticle1(randomizedNews.shift());
+      setHeroArticle2(randomizedNews.shift());
+      setNews(randomizedNews);
+      setDataLoading(false);
+    };
+    apiCall();
+  }, []);
 
   return (
     <Nav>
@@ -65,7 +65,7 @@ export default function MainFeed() {
             </li>
           </ul>
         </div>
-  
+
         {dataLoading ? (
           <h1>Wait for it</h1>
         ) : (
@@ -77,5 +77,5 @@ export default function MainFeed() {
         )}
       </main>
     </Nav>
-  )
+  );
 }

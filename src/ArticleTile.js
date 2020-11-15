@@ -37,7 +37,3 @@ export default function ArticleTile({ contentObject, isSecondary }) {
   )
 }
 
-//semi old line 9 (doesn't work)
-// {`${isHero ? 'isHero' : isSecondary ? 'isSecondary' : ''}`}
-// old line 9
-// {`${isSecondary && 'isSecondary'}`}{`${isHero && 'isHero'}`}
