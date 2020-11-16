@@ -1,6 +1,6 @@
 // exportable media queries to globalize styled components
 
- const breakpoints = {
+ export const breakpoints = {
   mobileS: 320,
   mobileM: 375,
   mobileL: 425,

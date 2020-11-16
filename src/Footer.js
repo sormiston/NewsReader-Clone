@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { mq } from './StyledMixins';
+import { breakpoints } from './StyledMixins';
 
 const StyledFooter = styled.div`
   footer {
@@ -11,7 +11,7 @@ const StyledFooter = styled.div`
   & .left {
     padding: 2rem;
     flex: 1 0 50%;
-    ${mq()}
+    
   }
   & > * {
     margin-top: 3.5rem;
@@ -22,7 +22,7 @@ const StyledFooter = styled.div`
 
   & .right {
     display: none;
-    ${mq('tablet')`
+    @media screen and (min-width: ${breakpoints.tablet}px) {
       display: block;
       flex: 0 1 50%;
       border: 2px solid gold;
@@ -31,13 +31,13 @@ const StyledFooter = styled.div`
       & li {
         text-align: left;
       }
-      `}
-    ${mq('desktopL')`
+    }
+    @media screen and (min-width: ${breakpoints.desktopL}px) {
       padding: 2rem 4rem;
       max-width: 40vw;
       margin: 0 5rem;
       border-width: 1px;
-      `}
+    }
   }
 `;
 
