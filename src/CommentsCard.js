@@ -4,7 +4,7 @@ import axios from 'axios'
 import styled from 'styled-components'
 import CommentInput from './CommentInput'
 import Comment from './Comment'
-import { mq } from './StyledMixins'
+import { breakpoints } from './StyledMixins'
 
 const StyledCommentsCard = styled.main`
   position: fixed;
@@ -13,9 +13,9 @@ const StyledCommentsCard = styled.main`
   z-index: 2;
   height: 100vh;
   right: 0;
-  ${mq('tablet')`
+  @media screen and (min-width: ${breakpoints.tablet}px) {
     width: 40%;
-  `}
+  }
 
   .commentCard-content {
     position: absolute;
@@ -27,11 +27,12 @@ const StyledCommentsCard = styled.main`
     z-index: 2;
     overflow-y: scroll;
     transform: translate3d(0, 100%, 0);
-    transition: transform 1s ease-out, visibility 1.1s;
+    transition: transform .25s ease-out, visibility 1.1s;
 
-    ${mq('tablet')`
+    @media screen and (min-width: ${breakpoints.tablet}px) {
       transform: translate3d(100%, 0, 0);
-      `}
+    }
+      
 
     .box {
       padding: 0.8rem;
@@ -80,7 +81,7 @@ const StyledCommentsCard = styled.main`
 
     .commentCard-content {
       transform: translate3d(0, 0, 0);
-      transition: transform 1s ease-out;
+      transition: transform .25s ease-out;
     }
 
     &:after {
@@ -101,19 +102,12 @@ const CommentsCard = forwardRef(
   ({ contentObject, toggleComments, commentOverlay }, ref) => {
     const params = useParams()
     const id = params.id
-    const {
-      REACT_APP_BASE_URL,
-      REACT_APP_AIRTABLE_API_KEY,
-    } = process.env
+    const { REACT_APP_BASE_URL, REACT_APP_AIRTABLE_API_KEY } = process.env
     const [dataLoading, setDataLoading] = useState(false)
     const [parsedComments, setParsedComments] = useState(
       JSON.parse(contentObject.comments)
     )
     const [didPostComment, setDidPostComment] = useState(0)
-
-    // THEORY: useEffect is necessary here because component must be allowed to render in its first state (eg closed) and THEN transition to its second state.  In other words, React's re-rendering on component change creates a break between states.
-
-    useEffect(() => {}, [commentOverlay])
 
     const patchCall = async (patch) => {
       const res = await axios.patch(
@@ -132,14 +126,11 @@ const CommentsCard = forwardRef(
       )
     }
     const getCall = async () => {
-      const res = await axios.get(
-        `${REACT_APP_BASE_URL}Content/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`,
-          },
-        }
-      )
+      const res = await axios.get(`${REACT_APP_BASE_URL}Content/${id}`, {
+        headers: {
+          Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`,
+        },
+      })
       setParsedComments(JSON.parse(res.data.fields.comments))
     }
 
@@ -187,10 +178,7 @@ const CommentsCard = forwardRef(
           <div className='fixed-head'>
             <p className='title is-3 mt-6 ml-5 response-head'>
               Responses ({parsedComments.length})
-              <button
-                className='delete mr-5'
-                onClick={toggleComments}
-              ></button>
+              <button className='delete mr-5' onClick={toggleComments}></button>
             </p>
             <CommentInput addComment={addComment} />
           </div>

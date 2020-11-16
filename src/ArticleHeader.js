@@ -3,6 +3,10 @@ import styled from 'styled-components'
 
 // STYLED COMPONENTS
 const StyledHeader = styled.header` 
+  section {
+    max-height: none !important;
+    
+  }
   `
 
 export default function Header({ article }) {

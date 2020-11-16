@@ -6,7 +6,7 @@ export default function Footer({ article, toggleComments }) {
   return (
     <>
       <div className="container">
-        <div className="tags are-medium">
+        <div className="tags are-medium pb-1 mb-2">
           <a className="tag is-light" href="">Tag1</a>
           <span className="tag is-light">Tag2</span>
           <span className="tag is-light">Tag3</span>
@@ -19,7 +19,7 @@ export default function Footer({ article, toggleComments }) {
 
           <div className="icon-bank">
             <span className="icon"><i className="fa fa-hand-lizard-o" aria-hidden="true"></i><span>{article.numClaps}</span></span>
-            <span className="icon px-6" ><i className="fa fa-comment" onClick={toggleComments}></i></span>
+            <span className="icon px-6" ><i className="far fa-comment" onClick={toggleComments}></i></span>
           </div>
         </div>
 
