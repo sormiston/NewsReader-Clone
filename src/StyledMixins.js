@@ -1,10 +1,14 @@
 // exportable media queries to globalize styled components
 
-export const breakpoints = {
-  tablet: 732,
-  desktop: 1100
+ const breakpoints = {
+  mobileS: 320,
+  mobileM: 375,
+  mobileL: 425,
+  tablet: 768,
+  desktop: 1024,
+  desktopL: 1440
 }
 
-export const mediaQueries = key => {
+export const mq = key => {
   return style => `@media (min-width: ${breakpoints[key]}px) { ${style} }`
 }

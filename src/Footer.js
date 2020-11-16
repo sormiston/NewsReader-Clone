@@ -1,47 +1,71 @@
-import React from 'react'
+import React from 'react';
+import styled from 'styled-components';
+import { mq } from './StyledMixins';
 
+const StyledFooter = styled.div`
+  footer {
+    display: flex;
+    justify-content: space-around;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+  & .left {
+    padding: 2rem;
+    flex: 1 0 50%;
+    ${mq()}
+  }
+  & > * {
+    margin-top: 3.5rem;
+  }
+  & i {
+    margin: 0 1rem;
+  }
 
-export default function Footer({ article, toggleComments }) {
+  & .right {
+    display: none;
+    ${mq('tablet')`
+      display: block;
+      flex: 0 1 50%;
+      border: 2px solid gold;
+      border-radius: 1em;
+      padding: 2rem 3rem;
+      & li {
+        text-align: left;
+      }
+      `}
+    ${mq('desktopL')`
+      padding: 2rem 4rem;
+      max-width: 40vw;
+      margin: 0 5rem;
+      border-width: 1px;
+      `}
+  }
+`;
 
+export default function Footer() {
   return (
-    <>
-      <div className="container">
-        <div className="tags are-medium">
-          <a className="tag is-light" href="">Tag1</a>
-          <span className="tag is-light">Tag2</span>
-          <span className="tag is-light">Tag3</span>
-          <span className="tag is-light">Tag4</span>
-          <span className="tag is-light">Tag5</span>
-        </div>
-      </div>
-      <div className="level">
-        <div className="level-left px-5">
-
-          <div className="icon-bank">
-            <span className="icon"><i className="fa fa-hand-lizard-o" aria-hidden="true"></i><span>{article.numClaps}</span></span>
-            <span className="icon px-6" ><i className="fa fa-comment" onClick={toggleComments}></i></span>
+    <StyledFooter>
+      <footer className='footer'>
+        <div className='content has-text-centered left'>
+          <h6>Made with &#10084;&#65039; by Sean Ormiston</h6>
+          <p>This is my first SPA made with React!</p>
+          <div className='icons'>
+            <a href='https://github.com/sormiston'>
+              <i className='fab fa-github fa-3x'></i>
+            </a>
+            <a href='https://www.linkedin.com/in/sormiston/'>
+              <i className='fab fa-linkedin fa-3x'></i>
+            </a>
           </div>
         </div>
-
-      </div>
-      <div className="media">
-        <div className="media-left"></div>
-        <figure className="image is-48x48">
-          <img src={`${article.profile}`} alt="" className="is-rounded" />
-        </figure>
-        <section className="media-content">
-          <div className="content px-3">
-            <p className="subtitle supertitle-actually">WRITTEN BY</p>
-            <h6 className="title is-5">{article.author}</h6>
-            <div className="subtitle is-6">{article.date}</div>
-          </div>
-        </section>
-        <div className="media-right">
-          <a className="button is-small is-info is-outlined" href="">Follow</a>
+        <div className='content has-text-centered right'>
+          Test the backend by leaving a comment!
+          <ul>
+            <li>Click any article</li>
+            <li>Click the speech bubble icon</li>
+            <li>You can edit your own comments, but not others...</li>
+          </ul>
         </div>
-
-      </div>
-    </>
-
-  )
+      </footer>
+    </StyledFooter>
+  );
 }

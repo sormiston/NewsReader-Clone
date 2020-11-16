@@ -2,7 +2,6 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import MainFeed from './MainFeed.js'
 import ArticlePage from './ArticlePage'
-import Nav from './Layout.js'
 import 'bulma/css/bulma.css'
 
 function App() {
@@ -14,14 +13,14 @@ function App() {
 
   return (
     <>
-      {/* // <Nav> */}
+     
       <Route path='/' exact>
         <MainFeed />
       </Route>
       <Route path='/:id'>
         <ArticlePage />
       </Route>
-      {/* </Nav> */}
+      
     </>
   )
 }
