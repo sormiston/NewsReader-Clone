@@ -1,15 +1,8 @@
 # Project Overview
 
-## Project Name
-
-Mydiem newsreader clone
-
-## Project Description
-
 Mydiem is a limited-functionality clone of the user-sourced news blog Medium - https://medium.com/.
 A large-ish database of schematized lorem ipsum data will represent articles, stats, and content.
-This project will be a self-guided study in design fidelity and architecture. The challenge is to apply React and CSS extended frameworks to create highly scalable code that directs high-volume rendering while preserving cohesive organization and style. This will also be a localized experiment of CRUD functionality with observable analogies to real-world cases.  
-I am hoping this practice will prepare me well for working with a UX student in P3.
+This project will be a self-guided study in design fidelity through reverse engineering. The challenge is to strike a balance between regular, reusable components on the one hand, and specific behavoirs of responsive design on the other.  This project, my first with React, will also be a study in managine screen flows with large amounts of dynamic content that the browser will not be able to render until the AJAX promise resolves.  Finally, there will be CRUD functional comments section, to re-hydrate app-level data from descended grandchild components.
 
 # Hosted on Netlify at: https://silly-goodall-b3a366.netlify.app/
 
@@ -21,18 +14,11 @@ https://airtable.com/shrhe3mgxSiLMgmJ2
 
 https://www.figma.com/file/ixr6g4sLRUepstgnTAGpjW/Untitled?node-id=0%3A1
 
-### MVP/PostMVP
-
-The functionality will then be divided into two separate lists: MVP and PostMVP. Carefully decided what is placed into your MVP as the client will expect this functionality to be implemented upon project completion.
-
 #### MVP
 
 - Render "Main Feed page" with
-
 - Render dynamically generated URL addressed Article pages that relate exactly to their thumbnail links
-
   - Article pages will have a fold-out Comments section with post and update functionality \*\* challenge
-
 - Replicate the layout styles of medium.com at desktop, tablet, and mobile breakpoints
 
 #### PostMVP
@@ -44,54 +30,18 @@ The functionality will then be divided into two separate lists: MVP and PostMVP.
 - Infinite scroll of newsfeed
 - Pop-down menu, notifications peek, separate Reading List page
 
-## Project Schedule
-
-| Day   | Deliverable                                                                                        | Status     |
-| ----- | -------------------------------------------------------------------------------------------------- | ---------- |
-| Aug 3 | Approval/ Populate Airtable / Initialize React Components / Raw main feed rendering                | Complete   |
-| Aug 4 | Finish/troubleshoot main feed rendering / Show Article Page w/ Comment section                     | Complete   |
-| Aug 5 | Finish/troubleshoot CRUD functionality of Comment section / style comment section and article page | Complete   |
-| Aug 6 | Style main feed rendering                                                                          | Complete   |
-| Aug 7 | Present                                                                                            | Complete |
-
 ## Priority Matrix
 
 https://drive.google.com/file/d/1XJ-RzlxrrwPygIRSYmMUFboQotY9HZHK/view?usp=sharing
-
-## Timeframes
-
-| Component                                                              | Priority | Estimated Time | Time Invested | Actual Time |
-| ---------------------------------------------------------------------- | :------: | :------------: | :-----------: | :---------: |
-| Populate Airtable                                                      |    H     |      1 hr      |               |             |
-| Initialize React Components: API calls + State storage                 |    H     |     2 hrs      |               |             |
-| Initialize React Components: Iterative Rendering function of main feed |    H     |     3 hrs      |               |             |
-| Initialize React Components: Reading List                              |    H     |     3 hrs      |               |             |
-| Initialize React Components: Show Article Page                         |    H     |     3 hrs      |               |             |
-| Comment Section Component                                              |    H     |     6 hrs      |               |             |
-| Stress-test Comment Section                                            |    L     |      1hr       |               |             |
-| CSS R & D                                                              |    H     |      4hr       |               |             |
-| Style Article Page                                                     |    M     |      5 hr      |               |             |  |
-| Style Main Feed                                                        |    M     |      7 hr      |               |             |  |
-| Total                                                                  |    H     |     30 hrs     |               |             |
 
 ## Component Hierarchy
 
 https://drive.google.com/file/d/13vkJLtizEeqSsIAcCjDxJsY6QJcES9Zw/view?usp=sharing
 
-## SWOT
-
-07-31-2020
-Strengths: I already have some practice/experience generating HTML content through iterators, and organizing "high volume" elements from a high level
-I have a very keen eye and focus when driven to reproduce things in detail.
-
-Weaknesses: Estimating time expenditure in this new environemtn (React) will be very hit or miss.  Styling in React is very much an open question.
-
-Opportunities: Excellent chance to demonstrate my capability for abstraction and scalability. Excellent opportunity to practice attention to detail, component-by-component.  Using Bulma for templating will be my first CSS framework, so it's good to have such focused end-product goals to work towards.  By overriding an established framework (where necessary) I'll both become aware of what Bulma can do and what it cannot (or can only do with opinions).
-
-Threats: No telling what kind of distractions/difficulties may lay in implementing Bulma - will be very documentation dependant.
-The challenges of the comment section are substantial.
-
 ## Code Snippet
+
+The below snippet lays out two alternative React Elements in JSX, assigning each to a variable for easy portability. This portability
+allows for conditional rendering in the context of the component's return block, allowing us to use a single line of ternary logic to keep a clean return (render) clause while selecting between two large-ish configurations of HTML tags.
 
 ```
 const editCommentElement = (
@@ -120,51 +70,8 @@ const editCommentElement = (
 ```
 
 
-The above snippet lays out two alternative React Elements in JSX, assigning each to a variable for easy portability. This portability
-allows for conditional rendering in the context of the component's return block, allowing us to swap out large-ish elements with
-a single line of ternary logic.
-
-For CSS, there's this Styled Component for resposive layout in Article Footer...
-
-```
-}
-  div.media-right {
-    flex: 1 0 400px;
-  }
-
-  @media screen and (max-width: 700px) {
-    div.media.media-left, div.media-content.content {
-    flex: 0 0 100%;
-    }
-
-    div.media-right {
-      flex: 1 1;
-    }
-  }
-```
-
-... clearly evidence of someone who knows what they're doing.
 
 
 
-## Issues
 
-08-07-2020
 
-- That box-shadow on the CommentsCard on scroll-in is hideous. Please figure out a way to darken the article itself on CommentOverlay action.
-
-10-01-2020
-
-- Comments section comes from side to occupy approx. 40% at desktop widths
-- Repair comment section ellipsis dropdown menus -- prev should close when current opens
-- Submit and cancel buttons should be hidden on textarea "what are your thoughts?" until focus
-- Details of border radius corners, check responsive widths (close button disappearing)
-- add the signature Medium left fixed side bar comment/clap/follow fade-in
-- Verify auto-redeploys at Netlify
-
-## Change Log
-
-08-08-2020
-
-- for time constraints - main feed render limited to "above the fold" section.
-- functional bookmarking + reading list components moved to MVP items
