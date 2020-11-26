@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createRef } from 'react'
+import React, { useState, createRef } from 'react'
 import styled from 'styled-components'
 
 const StyledComment = styled.div`
@@ -113,7 +113,7 @@ export default function Comment({
             </button>
           </div>
           <div className='dropdown-menu'>
-            {comment.name == localStorage.getItem('name')
+            {comment.name === localStorage.getItem('name')
               ? ownCommentDropdownContent
               : otherCommentDropdownContent}
           </div>

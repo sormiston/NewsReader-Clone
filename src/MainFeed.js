@@ -31,7 +31,7 @@ export default function MainFeed() {
       setNews(randomizedNews);
     };
     apiCall();
-  }, []);
+  }, [REACT_APP_AIRTABLE_API_KEY, REACT_APP_BASE_URL]);
 
   return (
     <Nav>

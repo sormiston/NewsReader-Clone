@@ -1,12 +1,12 @@
-import React, { useState, useEffect, createRef } from 'react'
-import axios from 'axios'
-import { useParams } from 'react-router-dom'
-import styled from 'styled-components'
-import Header from './ArticleHeader'
-import Body from './Body'
-import ArticleFooter from './ArticleFooter'
-import CommentsCard from './CommentsCard'
-import Nav from './Layout'
+import React, { useState, useEffect, createRef } from 'react';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import styled from 'styled-components';
+import Header from './ArticleHeader';
+import Body from './Body';
+import ArticleFooter from './ArticleFooter';
+import CommentsCard from './CommentsCard';
+import Nav from './Layout';
 
 const StyledArticle = styled.main`
   .article-body {
@@ -58,39 +58,36 @@ const StyledArticle = styled.main`
       flex: 1 1;
     }
   }
-`
+`;
 
 export default function ArticlePage() {
-  const params = useParams()
-  const id = params.id
-  const {
-    REACT_APP_BASE_URL,
-    REACT_APP_AIRTABLE_API_KEY,
-  } = process.env
-  const [article, setArticle] = useState({})
-  const [dataLoading, setDataLoading] = useState(true)
- 
-  const commentsCardElt = createRef()
+  const params = useParams();
+  const id = params.id;
+  const { REACT_APP_BASE_URL, REACT_APP_AIRTABLE_API_KEY } = process.env;
+  const [article, setArticle] = useState({});
+  const [dataLoading, setDataLoading] = useState(true);
+
+  const commentsCardElt = createRef();
 
   useEffect(() => {
     const apiCall = async () => {
-      setDataLoading(true)
+      setDataLoading(true);
       const res = await axios(`${REACT_APP_BASE_URL}Content/${id}`, {
         headers: {
           Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`,
         },
-      })
-      setArticle(res.data.fields)
-      setDataLoading(false)
-    }
-    apiCall()
-  }, [])
+      });
+      setArticle(res.data.fields);
+      setDataLoading(false);
+    };
+    apiCall();
+  }, [REACT_APP_BASE_URL, REACT_APP_AIRTABLE_API_KEY, id]);
 
   // we want to avoid state-based component re-rendering.
   // modify the below to toggle class on an appropriate DOM reference without involving state - OK
   const toggleComments = () => {
-    commentsCardElt.current.classList.toggle('show')
-  }
+    commentsCardElt.current.classList.toggle('show');
+  };
 
   return (
     <>
@@ -106,13 +103,10 @@ export default function ArticlePage() {
           <div className='article-body'>
             <Header article={article} />
             <Body />
-            <ArticleFooter
-              article={article}
-              toggleComments={toggleComments}
-            />
+            <ArticleFooter article={article} toggleComments={toggleComments} />
           </div>
         </StyledArticle>
       </Nav>
     </>
-  )
+  );
 }

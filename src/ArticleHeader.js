@@ -21,7 +21,7 @@ export default function Header({ article }) {
         </div>
       </section>
       <figure className="image is-3by2">
-        <img src={article.imgLarge} />
+        <img src={article.imgLarge} alt='headline' />
       </figure>
       <figcaption>{article.photoCredit}</figcaption>
       <div className="container">

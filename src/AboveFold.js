@@ -135,13 +135,6 @@ const StyledAboveFold = styled.section`
 `;
 
 export default function AboveFold({ heroArticle1, heroArticle2, news }) {
-  function getBulletSkeleton() {
-    if (window.innerWidth < 741) {
-      return <Skeleton count={16} />;
-    } else if (window.innerWidth < 1030) {
-    }
-  }
-
   return (
     <StyledAboveFold className='flex-1'>
       <div className='flex-2'>

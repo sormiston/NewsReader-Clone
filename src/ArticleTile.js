@@ -1,19 +1,17 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import HelperGems from './HelperGems'
 import Skeleton from 'react-loading-skeleton'
 
 export default function ArticleTile({ contentObject, isSecondary }) {
-  let customClassMarker = new String()
-  if (isSecondary) customClassMarker = customClassMarker.concat('isSecondary')
 
   return (
     // spot class distinguishes between Tile and Bullet
-    <div className={`${customClassMarker}`}>
+    <div className={`${isSecondary ? 'isSecondary':''}`}>
       <Link className='react-router-link' to={`/${contentObject.id}`}>
         <div className='flex-1a spot'>
           {contentObject.fields ? (
-            <img src={contentObject.fields.imgLarge} />
+            <img src={contentObject.fields.imgLarge} alt="article art"/>
           ) : (
             <Skeleton className='here' height={200} />
           )}

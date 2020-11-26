@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import HelperGems from './HelperGems'
-import Skeleton from 'react-loading-skeleton'
 
 const StyledArticleBullet = styled.div`
   margin: auto;
@@ -25,15 +24,13 @@ const StyledArticleBullet = styled.div`
 `
 
 export default function ArticleTile({ contentObject, isSecondary }) {
-  let customClassMarker = new String()
-  if (isSecondary) customClassMarker = customClassMarker.concat(' isSecondary')
-
+ 
   return (
     <StyledArticleBullet className='article-bullet-js'>
       <Link className='react-router-link' to={`/${contentObject.id}`}>
         <div className='flex-1a'>
          
-            <img src={contentObject.fields.imgLarge} />
+            <img src={contentObject.fields.imgLarge} alt="article art"/>
         
 
           <div className='flex-2a'>
