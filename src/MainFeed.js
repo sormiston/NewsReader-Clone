@@ -5,14 +5,12 @@ import Nav from './Layout';
 
 export default function MainFeed() {
   const { REACT_APP_BASE_URL, REACT_APP_AIRTABLE_API_KEY } = process.env;
-  const [news, setNews] = useState([]);
+  const [news, setNews] = useState(null);
   const [heroArticle1, setHeroArticle1] = useState({});
   const [heroArticle2, setHeroArticle2] = useState({});
-  const [dataLoading, setDataLoading] = useState(true);
 
   useEffect(() => {
     const apiCall = async () => {
-      setDataLoading(true);
       const res = await axios(`${REACT_APP_BASE_URL}Content/?view=Grid%20view`, {
         headers: {
           Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`,
@@ -31,7 +29,6 @@ export default function MainFeed() {
       setHeroArticle1(randomizedNews.shift());
       setHeroArticle2(randomizedNews.shift());
       setNews(randomizedNews);
-      setDataLoading(false);
     };
     apiCall();
   }, []);
@@ -40,9 +37,9 @@ export default function MainFeed() {
     <Nav>
       <main>
         <nav className='level is-mobile has-text-centered'></nav>
-        <div class='tabs is-centered is-fullwidth'>
+        <div className='tabs is-centered is-fullwidth'>
           <ul>
-            <li class='is-active'>
+            <li className='is-active'>
               <a>HOME</a>
             </li>
             <li>
@@ -66,15 +63,11 @@ export default function MainFeed() {
           </ul>
         </div>
 
-        {dataLoading ? (
-          <h1>Wait for it</h1>
-        ) : (
-          <AboveFold
-            heroArticle1={heroArticle1}
-            heroArticle2={heroArticle2}
-            news={news.slice(0, 3)}
-          />
-        )}
+        <AboveFold
+          heroArticle1={heroArticle1}
+          heroArticle2={heroArticle2}
+          news={news}
+        />
       </main>
     </Nav>
   );
