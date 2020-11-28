@@ -2,7 +2,7 @@
 
 This project is a self-guided study in design fidelity through reverse engineering. The challenge is to strike a balance between regular, reusable components on the one hand, and specific exceptions to behavoir and styling to allow for responsive design,  on the other.  This project, my first with React, will also be a study in managine screen flows with large amounts of dynamic content that the browser will not be able to render until the AJAX promise resolves.  Finally, there will be CRUD functional comments section, to re-hydrate app-level data from descended grandchild components.
 
-# Hosted on Netlify at: https://silly-goodall-b3a366.netlify.app/
+# Hosted on Netlify at: https://mydiem.netlify.app/
 
 ## API and Data Sample
 
