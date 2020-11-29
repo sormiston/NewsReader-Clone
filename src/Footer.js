@@ -46,7 +46,7 @@ export default function Footer() {
     <StyledFooter>
       <footer className='footer'>
         <div className='content has-text-centered left'>
-          <h6>Made with &#10084;&#65039; by Sean Ormiston</h6>
+          <h6>Made with <span role="img" aria-label="heart emoji">&#10084;&#65039;</span> by Sean Ormiston</h6>
           <p>This is my first SPA made with React!</p>
           <div className='icons'>
             <a href='https://github.com/sormiston'>

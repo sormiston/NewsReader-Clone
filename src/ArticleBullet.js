@@ -1,39 +1,17 @@
 import React from 'react'
-import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import HelperGems from './HelperGems'
-import Skeleton from 'react-loading-skeleton'
 
-const StyledArticleBullet = styled.div`
-  margin: auto;
-  width: 100%;
 
-  img {
-    width: 140px;
-    height: 100px;
-    margin-right: 1rem;
-    background-size: cover;
-    margin-right: 10px;
-  }
 
-  @media screen and (max-width: 504px) {
-    img {
-      width: 80px;
-      height: 80px;
-    }
-  }
-`
-
-export default function ArticleTile({ contentObject, isSecondary }) {
-  let customClassMarker = new String()
-  if (isSecondary) customClassMarker = customClassMarker.concat(' isSecondary')
-
+export default function ArticleBullet({ contentObject, isSecondary }) {
+ 
   return (
-    <StyledArticleBullet className='article-bullet-js'>
+    <div className='article-bullet'>
       <Link className='react-router-link' to={`/${contentObject.id}`}>
         <div className='flex-1a'>
          
-            <img src={contentObject.fields.imgLarge} />
+            <img src={contentObject.fields.imgLarge} alt="article art"/>
         
 
           <div className='flex-2a'>
@@ -58,6 +36,6 @@ export default function ArticleTile({ contentObject, isSecondary }) {
           </div>
         </div>
       </Link>
-    </StyledArticleBullet>
+    </div>
   )
 }

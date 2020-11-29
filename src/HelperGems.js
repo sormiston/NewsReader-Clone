@@ -4,9 +4,8 @@ import styled from 'styled-components'
 const StyledHelperGems = styled.div`
 display: flex;
 flex-flow: row nowrap;
-flex-basis: 55px;
+width: 40px;
 justify-content: space-between;
-margin-right: .35rem;
  
 `
 export default function HelperGems() {

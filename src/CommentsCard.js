@@ -1,4 +1,4 @@
-import React, { useEffect, useState, forwardRef } from 'react'
+import React, { useState, forwardRef } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
@@ -110,7 +110,7 @@ const CommentsCard = forwardRef(
     const [didPostComment, setDidPostComment] = useState(0)
 
     const patchCall = async (patch) => {
-      const res = await axios.patch(
+      await axios.patch(
         `${REACT_APP_BASE_URL}Content/${id}`,
         {
           fields: {

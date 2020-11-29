@@ -10,34 +10,47 @@ const StyledAboveFold = styled.section`
   margin: 1rem;
   padding: 0 1rem;
 
-  font-family: 'Open Sans', 'arial';
+  font-family: 'Helvetica', 'Open Sans', 'arial';
+
+  h1,
+  h3 {
+    line-height: 1.2;
+  }
+  
+  h1 {
+    font-size: 1.3rem;
+    margin: 1rem 0;
+    strong {
+      font-weight: 800;
+    }
+  }
+  
+  h3 {
+    color: #787878;
+  }
 
   .flex-1a {
     display: flex;
     flex-flow: row-reverse;
+    justify-content: space-between;
   }
   .flex-1a.spot {
     display: flex;
     flex-flow: column;
   }
   .flex-2 {
-    padding-bottom: 1rem;
+    margin-bottom: 1rem;
   }
+  
+  .flex-2 h1 {
+    font-size: 1.5rem;
+  }
+
   .flex-3 {
     flex-flow: column;
   }
   .flex-3 > div {
     padding-bottom: 1rem;
-  }
-  h1,
-  h3 {
-    line-height: 1.2;
-  }
-  h1 {
-    font-size: 1rem;
-  }
-  h3 {
-    font-size: 0.75rem;
   }
 
   img {
@@ -46,19 +59,73 @@ const StyledAboveFold = styled.section`
   .isSecondary {
     display: none;
   }
+
+  .article-bullet {
+    margin: auto;
+    width: 100%;
+    h1 {
+      font-size: 1.1rem;
+      margin: 0 0 1rem;
+    }
+    img {
+      width: 140px;
+      height: 100px;
+      margin-right: 1rem;
+      object-fit: cover;
+      margin-right: 10px;
+    }
+    .subtitle h3 {
+      font-size: 0.9rem;
+    }
+
+    @media screen and (max-width: 504px) {
+      img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  }
+
   .flex-2a {
     display: flex;
     flex-flow: column nowrap;
-    width: 75%;
-    justify-content: space-around;
+    padding-right: 0.4rem;
+  }
+
+  .flex-2a.spot {
     h1 {
-      margin: 1rem 0;
+      margin-top: 1rem;
+    }
+    .subtitle {
+      display: initial;
+    }
+  }
+  .flex-3a {
+    width: 100%;
+    .subtitle {
+      display: none;
+      h3 {
+        font-size: 0.85rem;
+      }
+    }
+
+    .byline {
+      h3 {
+        font-size: 0.75rem;
+      }
+      h3:nth-child(1) {
+        grid-row-start: 2;
+      }
+      h3:nth-child(2) {
+        grid-row-start: 3;
+        color: #787878;
+      }
     }
   }
   .flex-3a {
     display: flex;
     flex-flow: row nowrap;
-    width: 100%;
+
     justify-content: space-between;
   }
 
@@ -74,8 +141,12 @@ const StyledAboveFold = styled.section`
 
     .flex-3 {
       margin: 0 1rem;
+      width: 50%;
+      .flex-2a h1 {
+        font-size: 1rem;
+      }
     }
-    .subtitle > h3 {
+    .subtitle {
       display: none;
     }
     .flex-1a {
@@ -91,18 +162,36 @@ const StyledAboveFold = styled.section`
     .flex-2a {
       width: 100%;
     }
+    .article-bullet .flex-3a .byline {
+      h3 {
+        font-size: 0.65rem;
+      }
+    }
+  }
+
+  @media screen and (min-width: 800px) {
+    .article-bullet .flex-3a .byline {
+      h3 {
+        font-size: 0.75rem;
+      }
+    }
   }
 
   @media screen and (min-width: 1030px) {
     justify-content: center;
 
     .flex-2 {
-      width: 40%;
+      width: 33%;
+      h1 {
+        font-size: 1.8rem;
+      }
     }
     .flex-1a {
       height: 100%;
       width: inherit;
+      justify-content: flex-start;
     }
+
     .flex-1a.spot {
       width: inherit;
 
@@ -115,13 +204,16 @@ const StyledAboveFold = styled.section`
       }
     }
     .flex-3 {
-      width: 30%;
+      width: 38%;
+      .flex-2a h1 {
+        font-size: 1.15rem;
+      }
     }
     .subtitle > h3 {
       display: initial;
     }
     .flex-4 {
-      width: 30%;
+      width: 25%;
 
       .isSecondary {
         display: initial;
@@ -135,13 +227,6 @@ const StyledAboveFold = styled.section`
 `;
 
 export default function AboveFold({ heroArticle1, heroArticle2, news }) {
-  function getBulletSkeleton() {
-    if (window.innerWidth < 741) {
-      return <Skeleton count={16} />;
-    } else if (window.innerWidth < 1030) {
-    }
-  }
-
   return (
     <StyledAboveFold className='flex-1'>
       <div className='flex-2'>

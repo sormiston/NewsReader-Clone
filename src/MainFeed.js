@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AboveFold from './AboveFold';
-import Nav from './Layout';
+import Layout from './Layout';
 
 export default function MainFeed() {
   const { REACT_APP_BASE_URL, REACT_APP_AIRTABLE_API_KEY } = process.env;
@@ -9,55 +9,65 @@ export default function MainFeed() {
   const [heroArticle1, setHeroArticle1] = useState({});
   const [heroArticle2, setHeroArticle2] = useState({});
 
+  // SET TIMEOUT TO SIMULATE SLOW NETWORK FETCHES - DISABLE AFTER TRIALING WITH SKELETONS
   useEffect(() => {
-    const apiCall = async () => {
-      const res = await axios(`${REACT_APP_BASE_URL}Content/?view=Grid%20view`, {
-        headers: {
-          Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`,
-        },
-      });
+    setTimeout(() => {
+      const apiCall = async () => {
+        const res = await axios(`${REACT_APP_BASE_URL}Content/?view=Grid%20view`, {
+          headers: {
+            Authorization: `Bearer ${REACT_APP_AIRTABLE_API_KEY}`,
+          },
+        });
 
-      const randomize = (array) => {
-        const result = [];
-        while (array.length > 0) {
-          const randomIndex = Math.floor(Math.random() * array.length);
-          result.push(...array.splice(randomIndex, 1));
-        }
-        return result;
+        const randomize = (array) => {
+          const result = [];
+          while (array.length > 0) {
+            const randomIndex = Math.floor(Math.random() * array.length);
+            result.push(...array.splice(randomIndex, 1));
+          }
+          return result;
+        };
+        const randomizedNews = randomize(res.data.records);
+        setHeroArticle1(randomizedNews.shift());
+        setHeroArticle2(randomizedNews.shift());
+        setNews(randomizedNews);
       };
-      const randomizedNews = randomize(res.data.records);
-      setHeroArticle1(randomizedNews.shift());
-      setHeroArticle2(randomizedNews.shift());
-      setNews(randomizedNews);
-    };
-    apiCall();
-  }, []);
+      apiCall();
+    }, 0);
+  }, [REACT_APP_AIRTABLE_API_KEY, REACT_APP_BASE_URL]);
 
   return (
-    <Nav>
+    <Layout>
       <main>
         <nav className='level is-mobile has-text-centered'></nav>
         <div className='tabs is-centered is-fullwidth'>
           <ul>
             <li className='is-active'>
+              {/* eslint-disable-next-line */}
               <a>HOME</a>
             </li>
             <li>
+              {/* eslint-disable-next-line */}
               <a>POPULAR</a>
             </li>
             <li>
+              {/* eslint-disable-next-line */}
               <a>MOMENTUM</a>
             </li>
             <li>
+              {/* eslint-disable-next-line */}
               <a>CORONAVIRUS</a>
             </li>
             <li>
+              {/* eslint-disable-next-line */}
               <a>ONEZERO</a>
             </li>
             <li>
+              {/* eslint-disable-next-line */}
               <a>ELEMENTAL</a>
             </li>
             <li>
+              {/* eslint-disable-next-line */}
               <a>GEN</a>
             </li>
           </ul>
@@ -69,6 +79,6 @@ export default function MainFeed() {
           news={news}
         />
       </main>
-    </Nav>
+    </Layout>
   );
 }
