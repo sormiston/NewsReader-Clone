@@ -5,6 +5,7 @@ export default function Footer({ article, toggleComments }) {
     <>
       <div className='container'>
         <div className='tags are-medium pb-1 mb-2'>
+          {/* eslint-disable-next-line */}
           <a className='tag is-light'>Tag1</a>
           <span className='tag is-light'>Tag2</span>
           <span className='tag is-light'>Tag3</span>
@@ -38,6 +39,7 @@ export default function Footer({ article, toggleComments }) {
           </div>
         </section>
         <div className='media-right'>
+          {/*eslint-disable-next-line*/}
           <a className='button is-small is-info is-outlined'>Follow</a>
         </div>
       </div>
