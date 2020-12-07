@@ -54,7 +54,7 @@ const StyledAboveFold = styled.section`
   }
 
   img {
-    background-size: auto;
+    object-fit: cover;
   }
   .isSecondary {
     display: none;
