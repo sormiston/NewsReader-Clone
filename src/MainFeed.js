@@ -5,13 +5,12 @@ import Layout from './Layout';
 
 export default function MainFeed() {
   const { REACT_APP_BASE_URL, REACT_APP_AIRTABLE_API_KEY } = process.env;
-  const [news, setNews] = useState(null);
+  const [news, setNews] = useState([]);
   const [heroArticle1, setHeroArticle1] = useState({});
   const [heroArticle2, setHeroArticle2] = useState({});
 
-  // SET TIMEOUT TO SIMULATE SLOW NETWORK FETCHES - DISABLE AFTER TRIALING WITH SKELETONS
+ 
   useEffect(() => {
-    setTimeout(() => {
       const apiCall = async () => {
         const res = await axios(`${REACT_APP_BASE_URL}Content/?view=Grid%20view`, {
           headers: {
@@ -33,8 +32,7 @@ export default function MainFeed() {
         setNews(randomizedNews);
       };
       apiCall();
-    }, 0);
-  }, [REACT_APP_AIRTABLE_API_KEY, REACT_APP_BASE_URL]);
+    }, [REACT_APP_AIRTABLE_API_KEY, REACT_APP_BASE_URL]);
 
   return (
     <Layout>

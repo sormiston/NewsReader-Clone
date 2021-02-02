@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import ArticleTile from './ArticleTile';
 import ArticleBullet from './ArticleBullet';
-import Skeleton from 'react-loading-skeleton';
+
 
 const StyledAboveFold = styled.section`
   display: flex;
@@ -16,7 +16,7 @@ const StyledAboveFold = styled.section`
   h3 {
     line-height: 1.2;
   }
-  
+
   h1 {
     font-size: 1.3rem;
     margin: 1rem 0;
@@ -24,7 +24,7 @@ const StyledAboveFold = styled.section`
       font-weight: 800;
     }
   }
-  
+
   h3 {
     color: #787878;
   }
@@ -41,7 +41,7 @@ const StyledAboveFold = styled.section`
   .flex-2 {
     margin-bottom: 1rem;
   }
-  
+
   .flex-2 h1 {
     font-size: 1.5rem;
   }
@@ -216,7 +216,7 @@ const StyledAboveFold = styled.section`
       width: 25%;
 
       .isSecondary {
-        display: initial;
+        display: block;
       }
     }
   }
@@ -230,16 +230,19 @@ export default function AboveFold({ heroArticle1, heroArticle2, news }) {
   return (
     <StyledAboveFold className='flex-1'>
       <div className='flex-2'>
-        <ArticleTile contentObject={heroArticle1} isSecondary={false} />
+       <ArticleTile contentObject={heroArticle1} isSecondary={false} />
       </div>
       <div className='flex-3'>
-        {news ? (
+        {/* {
           news
             .slice(0, 3)
-            .map((news, index) => <ArticleBullet contentObject={news} key={index} />)
-        ) : (
-          <Skeleton count={16} />
-        )}
+            .map((news, index) => (
+              <ArticleBullet contentObject={news} key={index} index={index} />
+            ))
+        } */}
+        <ArticleBullet contentObject={news[0]} />
+        <ArticleBullet contentObject={news[1]} />
+        <ArticleBullet contentObject={news[2]} />
       </div>
       <div className='flex-4'>
         <ArticleTile contentObject={heroArticle2} isSecondary={true} />
